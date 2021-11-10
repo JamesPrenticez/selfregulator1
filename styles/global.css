@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --color-primary-accent: #3482F6;
+    --color-secondary-accent: #000;
+    --color-tertiary-accent: #E5E7EB;
+    --color-primary: #fff; /* text */
+    --color-secondary: #000; /* background color */
+    --color-tertiary: #D1D6DB; 
+}
+
+[data-theme="dark"] {
+    --color-primary-accent: #AA00FF;
+    --color-secondary-accent: #00FF00;
+    --color-tertiary-accent: #00FF00;
+    --color-primary: #000;
+    --color-secondary: #fff;
+    --color-tertiary: #D1D6DB; 
+}
+
+body {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+}
+
+html {
+    --primary: var(--color-primary);
+    --secondary: var(var(--color-secondary));
+    --tertiary: var(var(--color-tertiary));
+    --primaryAccent: var(var(--color-primary-accent));
+    --secondaryAccent: var(var(--color-secondary-accent));
+    --tertiaryAccent: var(var(--color-tertiary-accent));
+}
+
+@layer components {
+    .navBtn{
+        @apply
+            text-custom-secondary 
+            hidden 
+            md:inline-flex
+            h-6
+            cursor-pointer
+            transform
+            transition-all
+            hover:scale-125
+            duration-150
+            ease-out;
+    }
+}
+@layer components {
+    .fade {
+        @apply
+            transition-all
+            ease-in-out
+            duration-150;
+    }
+}
