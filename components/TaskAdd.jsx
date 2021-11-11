@@ -5,6 +5,7 @@ function TaskAdd(){
     const [name, setName] = useRecoilState(addTaskState)
     const setTasks = useSetRecoilState(tasksState)
 
+
     function handleChange(e){
         setName(e.target.value)
         console.log(name)
