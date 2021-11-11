@@ -1,16 +1,18 @@
 import Head from 'next/head'
+import Course from '../components/Course';
 import Header from '../components/Header'
 
-const IndexPage = () => {
+const CoursePage = () => {
 	return (
-    <>
-        <Head>
+		<>
+      <Head>
         <title>Self Regulator</title>
         <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <Header />
+      </Head>
+      <Header />
+      <Course />
     </>
-);
+	);
 };
 
-export default IndexPage;
+export default CoursePage;
