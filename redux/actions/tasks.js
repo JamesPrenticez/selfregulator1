@@ -1,16 +1,12 @@
-export const SET_TASKS = 'SET_TASKS'
-export const REMOVE_TASK = 'REMOVE_TASK'
+import { addDoc, collection} from '@firebase/firestore';
+import { db } from "../../firebase"
 
-export function setTasks(tasks){
-  return({
-    type: 'SET_TASKS',
-    tasks
-  })
-}
-
-export function removeTask(id) {
-  return ({
-      type: 'REMOVE_TASK',
-      id
-  })
+//Action creators can return functions instead of objects thanks to redux thunk
+export const addTask = (task) => {
+  return async (dispatch) => {
+    //make async call to db
+    await addDoc(collection(db, "tasks"), task)
+    //send to the reducer
+    dispatch({ type: "ADD_TASK", task})
+  }
 }

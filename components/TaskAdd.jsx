@@ -1,13 +1,13 @@
 import React from "react"
 import { connect } from "react-redux"
-//import { setTasks } from "../redux/actions/task"
+import { addTask } from "../redux/actions/tasks"
 
 class TaskAdd extends React.Component{
     state = {
         task: "",
         boxes: [null, null, null, null, null, null, null]
-
     }   
+
     handleChange = (e) => {
         this.setState({
             task: e.target.value
@@ -16,13 +16,8 @@ class TaskAdd extends React.Component{
 
     submit = (e) => {
         e.preventDefault()
-        // this.props.dispatch(setTasks(
-        //     [{
-        //         task: this.state.task,
-        //         boxes: this.state.boxes
-        //     }]
-        // ))
-        // this.setState({task: ""})       
+        this.props.addTask(this.state)
+
     }
 
     render(){
@@ -49,4 +44,10 @@ class TaskAdd extends React.Component{
     )
     }
 }
-export default connect()(TaskAdd) 
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addTask: (task) => dispatch(addTask(task))
+    }
+}
+export default connect(null, mapDispatchToProps)(TaskAdd) 

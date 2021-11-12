@@ -1,17 +1,21 @@
-import { initializeApp } from "firebase/app"
-require('dotenv').config();
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore"
 
 const firebaseConfig = {
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  databaseURL: process.env.DATABASE_URL,
-  projectId: process.env.PROJECT_ID ,
-  storageBucket: process.env.STORAGE_BUCKET,
-  messagingSenderId: process.env.MESSAGING_SENDER_ID,
-  appId: process.env.APP_ID
+  apiKey: "AIzaSyBdVxa0cmvG2061BCtK4YWgIBkcKW6pN_c",
+  authDomain: "selfregulator-ec5ea.firebaseapp.com",
+  databaseURL: "https://selfregulator-ec5ea-default-rtdb.firebaseio.com",
+  projectId: "selfregulator-ec5ea",
+  storageBucket: "selfregulator-ec5ea.appspot.com",
+  messagingSenderId: "205327288008",
+  appId: "1:205327288008:web:68bc03c9759527079bc7fd"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const databaseRef = firebase.database().ref();
-export const tasksRef = databaseRef.child("tasks")
+
+// Prepare Database
+const db = getFirestore();
+
+export { app, db};
