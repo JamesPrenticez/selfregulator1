@@ -1,51 +1,52 @@
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { addTaskState, tasksState } from '../atoms/task';
+import React from "react"
+import { connect } from "react-redux"
+//import { setTasks } from "../redux/actions/task"
 
-function TaskAdd(){
-    const [name, setName] = useRecoilState(addTaskState)
-    const setTasks = useSetRecoilState(tasksState)
+class TaskAdd extends React.Component{
+    state = {
+        task: "",
+        boxes: [null, null, null, null, null, null, null]
 
-
-    function handleChange(e){
-        setName(e.target.value)
-        console.log(name)
-    }
-
-    function submit(e){
-        e.preventDefault()
-        setTasks(oldTasks => {
-            const newTasks = [
-                ...oldTasks,
-                {
-                 task: name,
-                 boxes: [null, null, null, null, null, null, null]
-                }
-            ]
-            return newTasks
+    }   
+    handleChange = (e) => {
+        this.setState({
+            task: e.target.value
         })
-        setName("")
     }
 
+    submit = (e) => {
+        e.preventDefault()
+        // this.props.dispatch(setTasks(
+        //     [{
+        //         task: this.state.task,
+        //         boxes: this.state.boxes
+        //     }]
+        // ))
+        // this.setState({task: ""})       
+    }
+
+    render(){
     return(
         <form className="grid grid-cols-12 mt-20">
         <input
-            name='name'
-            value={name}
+            name='task'
+            value={this.task}
             className="bg-transparent mr-2 col-span-5 md:col-span-4 focus:outline-none xl:text-2xl"
             placeholder="Add New Task..."
-            onChange={handleChange}
+            onChange={this.handleChange}
         />
         <div className="col-span-4">
             {/* fills in the grid */}
         </div>
         <button 
             className="border-2 border-custom-primaryAccent px-2 hover:bg-custom-primaryAccent rounded-full col-span-3 md:col-span-4 xl:text-2xl"
-            onClick={submit}
+            onClick={this.submit}
             type="sumbit"
         >
             Create Task
         </button>
     </form>
     )
+    }
 }
-export default (TaskAdd) 
+export default connect()(TaskAdd) 
