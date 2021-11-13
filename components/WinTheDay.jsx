@@ -2,8 +2,18 @@ import React from "react"
 import { connect } from "react-redux"
 import Task from "./Task";
 import TaskAdd from "./TaskAdd";
+import { fetchTasks } from "../redux/actions/tasks"
 
 class WinTheDay extends React.Component{
+
+componentDidMount(){
+  this.props.fetchTasks()
+}
+
+componentDidUpdate(){
+  this.props.fetchTasks()
+}
+
 render(){
   const { tasks } = this.props
   
@@ -39,4 +49,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(WinTheDay)
+const mapDispatchToProps = (dispatch) => {
+  return {
+      fetchTasks: () => dispatch(fetchTasks())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WinTheDay)

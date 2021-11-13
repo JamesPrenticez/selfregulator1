@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import { addTask } from "../redux/actions/tasks"
+import { addTask, fetchTasks } from "../redux/actions/tasks"
 
 class TaskAdd extends React.Component{
     state = {
@@ -17,7 +17,12 @@ class TaskAdd extends React.Component{
     submit = (e) => {
         e.preventDefault()
         this.props.addTask(this.state)
-
+        
+    }
+    
+    fetchButton = (e) => {
+        e.preventDefault()
+        this.props.fetchTasks()
     }
 
     render(){
@@ -40,6 +45,12 @@ class TaskAdd extends React.Component{
         >
             Create Task
         </button>
+        <button 
+            className="bg-green-600 px-2 hover:bg-custom-primaryAccent rounded-full col-span-3 md:col-span-4 xl:text-2xl"
+            onClick={this.fetchButton}
+        >
+            FETCH DATA
+        </button>
     </form>
     )
     }
@@ -47,7 +58,8 @@ class TaskAdd extends React.Component{
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addTask: (task) => dispatch(addTask(task))
+        addTask: (task) => dispatch(addTask(task)),
+        fetchTasks: () => dispatch(fetchTasks())
     }
 }
 export default connect(null, mapDispatchToProps)(TaskAdd) 
