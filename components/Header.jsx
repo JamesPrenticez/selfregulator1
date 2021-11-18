@@ -1,8 +1,9 @@
-import { MenuIcon, TrendingUpIcon } from "@heroicons/react/outline"
+import { TrendingUpIcon } from "@heroicons/react/outline"
 import { HomeIcon, PlayIcon } from "@heroicons/react/solid";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import DarkModeToggle from "./DarkMode"
+import Hamburger from "./Hamburger";
 
 function Header() {
     const {data: session} = useSession();
@@ -32,9 +33,9 @@ function Header() {
 
                 {/* Right*/}
                 <div className="col-span-1 inline-flex items-center justify-end space-x-4">
+                    <Hamburger className="h-6 md:hidden cursor-pointer" />
                     <TrendingUpIcon onClick={() => router.push('/tools')} className="navBtn" />
                     <PlayIcon onClick={() => router.push('/course')} className="navBtn" />
-                    <MenuIcon className="h-6 md:hidden cursor-pointer" />
                     <HomeIcon onClick={() => router.push('/')} className="navBtn" />
                     <DarkModeToggle />
                     {session ? (
