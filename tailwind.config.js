@@ -30,13 +30,19 @@ module.exports = {
           primaryAccent: "var(--color-primary-accent)",
           secondaryAccent: "var(--color-secondary-accent)",
           tertiaryAccent: "var(--color-tertiary-accent)",
+          quarterAccent: "var(--color-quarter-accent)",
+          quinaryAccent: "var(--color-quinary-accent)",
         }
       },
       height:{
         screenNav: "calc(100vh - 5rem)",
+        180: "180px"
       },
       width:{
-        100: "100px"
+        180: "180px"
+      },
+      borderWidth:{
+        3: "3px"
       },
       fontFamily: {
         kanit: ['Kanit'],

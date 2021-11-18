@@ -44,7 +44,7 @@ import Document, {
       return (
         <Html>
           <Head>
-            <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap" rel="stylesheet"></link>
+            <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap" rel="stylesheet"></link>
           </Head>
           <body>
             <script

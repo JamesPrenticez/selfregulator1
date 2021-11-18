@@ -50,7 +50,7 @@ function Header() {
                     (
                         <>
                             <button 
-                                className="text-custom-secondary w-32 p-2 font-bold border border-gray-600 rounded hover:border-green-600 hover:text-green-600" 
+                                className="text-custom-secondary w-32 p-2 font-bold border border-custom-tertiaryAccent rounded hover:bg-custom-secondaryAccent hover:text-custom-quarterAccent" 
                                 onClick={signIn} 
                             >
                                 Sign In

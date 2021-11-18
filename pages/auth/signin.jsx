@@ -16,7 +16,8 @@ function signIn({ providers }) {
         <div className="w-3/6 xl:w-1/5 border border-custom-tertiaryAccent rounded">
           <div className="flex flex-wrap justify-center h-1/4 w-full">
             <div className="p-4">
-              <img
+                {/*Logo*/}
+                <img
                 onClick={() => router.push("/")}
                 src={"/icon.svg"}
                 className="bg-black border-2 border-black rounded-full hover:cursor-pointer"
@@ -72,8 +73,8 @@ function signIn({ providers }) {
             {Object.values(providers).map((provider) => (
               <div key={provider.name} className="w-full">
                 <button
-                  className={`mt-2 p-2 border border-gray-600 rounded w-full text-center hover:scale-105 transform transition duration-200 ease-out 
-                    ${provider.name === "GitHub" ? "bg-black text-white" : "bg-blue-900 text-white"}`}
+                  className={`mt-2 p-2 border border-gray-600 rounded w-full text-center hover:scale-105 transform transition duration-200 ease-out
+                    ${provider.name === "GitHub" ? "bg-black text-white" : "text-custom-scondary"} `}
                   onClick={() =>
                     SignIntoProvider(provider.id, { callbackUrl: "/" })
                   }
