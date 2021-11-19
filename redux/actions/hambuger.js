@@ -6,7 +6,6 @@
 export const TOGGLE_HAMBURGER = 'TOGGLE_HAMBURGER'
 
 export function toggleHamburger(bool){
-  console.log("action")
   return ({
     type: TOGGLE_HAMBURGER,
     bool

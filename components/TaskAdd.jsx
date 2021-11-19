@@ -17,42 +17,31 @@ class TaskAdd extends React.Component{
     submit = (e) => {
         e.preventDefault()
         this.props.addTask(this.state)
-        
-    }
-    
-    fetchButton = (e) => {
-        e.preventDefault()
         this.props.fetchTasks()
+        this.setState({task: ""})
     }
 
     render(){
-    return(
-        <form className="grid grid-cols-12 mt-20">
-        <input
-            name='task'
-            value={this.task}
-            className="bg-transparent mr-2 col-span-5 md:col-span-4 focus:outline-none xl:text-2xl"
-            placeholder="Add New Task..."
-            onChange={this.handleChange}
-        />
-        <div className="col-span-4">
-            {/* fills in the grid */}
-        </div>
-        <button 
-            className="border-2 border-custom-primaryAccent px-2 hover:bg-custom-primaryAccent rounded-full col-span-3 md:col-span-4 xl:text-2xl"
-            onClick={this.submit}
-            type="sumbit"
-        >
-            Create Task
-        </button>
-        <button 
-            className="bg-green-600 px-2 hover:bg-custom-primaryAccent rounded-full col-span-3 md:col-span-4 xl:text-2xl"
-            onClick={this.fetchButton}
-        >
-            FETCH DATA
-        </button>
-    </form>
-    )
+        return(
+            <form className="grid grid-cols-12 mt-4">
+            <input
+                name='task'
+                value={this.state.task}
+                className="bg-transparent mr-2 col-span-5 md:col-span-4 focus:outline-none xl:text-2xl"
+                placeholder="Add New Task..."
+                onChange={this.handleChange}
+            />
+            {/*blank space to fill in the grid */}
+            <div className="col-span-4" />
+            <button 
+                className="border-2 border-custom-primaryAccent px-2 hover:bg-custom-primaryAccent rounded-full col-span-3 md:col-span-4 xl:text-2xl"
+                onClick={this.submit}
+                type="sumbit"
+            >
+                Create Task
+            </button>
+        </form>
+        )
     }
 }
 

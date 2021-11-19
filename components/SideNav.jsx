@@ -21,7 +21,6 @@ class SideNav extends React.Component{
   render(){
     const {session} = this.props
     const {hamburger} = this.props
-    console.log(this.props)
     let content = null
 
     if(!session){

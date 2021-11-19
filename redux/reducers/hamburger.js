@@ -21,7 +21,6 @@
 import {TOGGLE_HAMBURGER} from '../actions/hambuger'
 
 export default function(state = false, action){
-  console.log("reducer")
   switch(action.type) {
     case TOGGLE_HAMBURGER:
       return action.bool

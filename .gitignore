@@ -36,4 +36,3 @@ yarn-error.log*
 
 # public
 /public/video.mp4
-/public/vercel.svg

@@ -8,9 +8,9 @@ function Task({item, currentDayIndex, daysThisWeek}) {
 
       {item.boxes.map((box, index) => (
         <div
-        key={index}
-        className={`mt-2 rounded-full border md:border-2 border-custom-tertiaryAccent h-6 w-6 md:h-10 md:w-10 flex justify-center items-center text-center gap-1 hover:border-custom-primaryAccent hover:cursor-pointer
-        ${currentDayIndex === index && "text-custom-primaryAccent"}
+          key={index}
+          className={`mt-2 rounded-full border md:border-2 border-custom-tertiaryAccent h-6 w-6 md:h-10 md:w-10 flex justify-center items-center text-center gap-1 hover:border-custom-primaryAccent hover:cursor-pointer
+          ${currentDayIndex === index && "text-custom-primaryAccent"}
         `}
         >
             {box === true ?

@@ -66,11 +66,6 @@ componentDidMount(){
   this.props.fetchTasks()
 }
 
-// componentDidUpdate(){
-//   console.log("componentDidUpdate")
-//   this.props.fetchTasks()
-// }
-
 render(){
   const { tasks } = this.props
   
