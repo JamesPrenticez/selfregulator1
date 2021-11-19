@@ -10,9 +10,6 @@ function Tick() {
 
   return (
     <div>
-      <h1>Hello</h1>
-
-
       <div
         className="h-10 w-10 bg-black rounded-full hover:cursor-pointer"
         onClick={animate}>

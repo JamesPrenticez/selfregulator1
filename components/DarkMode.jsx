@@ -31,19 +31,22 @@ const DarkModeToggle = () => {
 
     return (
       <>
+      <div className="pb-2">
+        
         {darkTheme ? (
           <LightBulbIcon
-            className="navBtn"
+          className="h-7 md:h-6 text-custom-secondary md:inline-flex cursor-pointer transform transition-all hover:scale-125 duration-150 ease-out"
+          onClick={() => setDarkTheme(!darkTheme)}
+          onChange={handleToggle}
+          />
+          ) : (
+            <MoonIcon 
+            className="h-7 md:h-6 text-custom-secondary md:inline-flex cursor-pointer transform transition-all hover:scale-125 duration-150 ease-out"
             onClick={() => setDarkTheme(!darkTheme)}
             onChange={handleToggle}
             />
-            ) : (
-              <MoonIcon 
-              className="navBtn"
-              onClick={() => setDarkTheme(!darkTheme)}
-              onChange={handleToggle}
-          />
-        )}
+            )}
+      </div>
       </>
     );
 }

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Header from '../components/Header'
-import Tick from '../components/Tick';
+//import Tick from '../components/Tick';
 
 const IndexPage = () => {
 	return (
@@ -10,7 +10,7 @@ const IndexPage = () => {
         <link rel="icon" href="/favicon.ico" />
         </Head>
         <Header />
-        <Tick />
+        {/* <Tick /> */}
     </>
 );
 };

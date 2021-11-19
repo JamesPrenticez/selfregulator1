@@ -4,13 +4,14 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import DarkModeToggle from "./DarkMode"
 import Hamburger from "./Hamburger";
+import SideNav from "./SideNav"
 
 function Header() {
     const {data: session} = useSession();
     const router = useRouter();
 
     return (
-        <div className="shadow-sm border-b border-custom-tertiaryAccent bg-custom-primary sticky top-0 z-50 fade">
+        <div className="shadow-sm border-b border-custom-tertiaryAccent bg-custom-primary sticky top-0 h-20 z-50 fade">
             <div className="grid grid-cols-2 md:max-w-3xl lg:grid-cols-3 xl:max-w-6xl mx-auto">
                 {/* Left */}
                 <div className="col-span-1 lg:col-span-2">
@@ -32,12 +33,13 @@ function Header() {
                 </div>
 
                 {/* Right*/}
-                <div className="col-span-1 inline-flex items-center justify-end space-x-4">
-                    <Hamburger className="h-6 md:hidden cursor-pointer" session={session}/>
+                <div className="col-span-1 inline-flex items-center justify-end md:space-x-4">
                     <TrendingUpIcon onClick={() => router.push('/tools')} className="navBtn" />
                     <PlayIcon onClick={() => router.push('/course')} className="navBtn" />
                     <HomeIcon onClick={() => router.push('/')} className="navBtn" />
                     <DarkModeToggle />
+                    <Hamburger className="h-6 md:hidden cursor-pointer" />
+                    <SideNav className="md:hidden" session={session}/>
                     {session ? (
                         <>
                             <img 
@@ -51,7 +53,7 @@ function Header() {
                     (
                         <>
                             <button 
-                                className="text-custom-secondary w-32 p-2 font-bold border border-custom-tertiaryAccent rounded hover:bg-custom-secondaryAccent hover:text-custom-quarterAccent" 
+                                className="hidden md:block text-custom-secondary w-32 p-2 font-bold border border-custom-tertiaryAccent rounded hover:bg-custom-secondaryAccent hover:text-custom-quarterAccent" 
                                 onClick={signIn} 
                             >
                                 Sign In

@@ -20,9 +20,7 @@
 
 import {TOGGLE_HAMBURGER} from '../actions/hambuger'
 
-const initialState = {hamburger: false}
-
-export default function(state = true, action){
+export default function(state = false, action){
   console.log("reducer")
   switch(action.type) {
     case TOGGLE_HAMBURGER:

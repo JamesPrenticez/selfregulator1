@@ -7,7 +7,7 @@ class Hamburger extends React.Component{
   const {hamburger} = this.props
     return (
       <div>
-        <button className="text-white md:hidden ml-auto outline-none mr-8" 
+        <button className="text-white md:hidden ml-auto outline-none " 
           onClick={() => this.props.dispatch(toggleHamburger(!hamburger))}>
           <div className="flex justify-center items-center h-20 w-20 ">
               {/* --------- top ---------*/}
