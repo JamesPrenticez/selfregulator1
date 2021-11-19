@@ -1,8 +1,8 @@
-const initalState = [
-  {id: 1, task: "Go for a run", boxes: [true, null, null, null, null, false, null]},
-  {id: 2, task: "Meditate", boxes: [null, null, false, null, null, null, null]},
-  {id: 3, task: "Read a book", boxes: [null, null, null, null, true, null, null]},
-]
+// const initalState = [
+//   {id: 1, task: "Go for a run", boxes: [true, null, null, null, null, false, null]},
+//   {id: 2, task: "Meditate", boxes: [null, null, false, null, null, null, null]},
+//   {id: 3, task: "Read a book", boxes: [null, null, null, null, true, null, null]},
+// ]
 
 export default function Tasks(state = [], action){
   switch(action.type) {

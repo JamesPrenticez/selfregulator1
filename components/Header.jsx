@@ -33,7 +33,7 @@ function Header() {
 
                 {/* Right*/}
                 <div className="col-span-1 inline-flex items-center justify-end space-x-4">
-                    <Hamburger className="h-6 md:hidden cursor-pointer" />
+                    <Hamburger className="h-6 md:hidden cursor-pointer" session={session}/>
                     <TrendingUpIcon onClick={() => router.push('/tools')} className="navBtn" />
                     <PlayIcon onClick={() => router.push('/course')} className="navBtn" />
                     <HomeIcon onClick={() => router.push('/')} className="navBtn" />
