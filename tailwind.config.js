@@ -32,6 +32,7 @@ module.exports = {
           tertiaryAccent: "var(--color-tertiary-accent)",
           quarterAccent: "var(--color-quarter-accent)",
           quinaryAccent: "var(--color-quinary-accent)",
+          senaryAccent: "var(--color-senary-accent)",
         }
       },
       height:{

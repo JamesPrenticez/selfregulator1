@@ -28,12 +28,12 @@ class TaskAdd extends React.Component{
             <input
                 name='task'
                 value={this.state.task}
-                className="bg-transparent mr-2 col-span-5 md:col-span-4 focus:outline-none xl:text-2xl"
+                className="bg-transparent mr-2 col-span-5 md:col-span-4 focus:outline-none text-xs md:text-base"
                 placeholder="Add New Task..."
                 onChange={this.handleChange}
             />
             <button 
-                className="col-start-9 col-span-4 border-2 border-custom-primaryAccent px-2 hover:bg-custom-primaryAccent rounded-full  xl:text-2xl"
+                className="col-start-9 col-span-4 border-2 border-custom-primaryAccent px-2 hover:bg-custom-primaryAccent rounded-full text-xs md:text-base"
                 onClick={this.submit}
                 type="sumbit"
             >

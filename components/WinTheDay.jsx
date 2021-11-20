@@ -24,7 +24,7 @@ function WinTheDay({tasks}){
   return (
       <main className="bg-custom-background fade grid grid-cols-2 md:max-w-3xl xl:max-w-6xl mx-auto">
         {/* Tasks */}
-        <section className="col-span-2 md:col-span-1">
+        <section className="col-span-2 xl:col-span-1">
           <div className="w-full">
             <div className="p-4 md-p-0 xl:mt-4">
             <h1 className="flex justify-center text-2xl font-bold mb-4 font-kanit">{monthName} - Week {currentWeek}</h1>
