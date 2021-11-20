@@ -19,7 +19,7 @@ export default function Tasks(state = [], action){
       return state
     
     case "REMOVE_TASK":
-      console.log("Result from DELETE_TASK:", action.task.id)
+      //console.log("Result from DELETE_TASK:", action.task.id)
       return state.filter(task => task.id != action.id)
     
     case "REMOVE_TASK_ERROR":

@@ -4,7 +4,7 @@ function Tick() {
   const [active, setActive] = useState(null)
 
   const animate = () => {
-    console.log(active)
+    //console.log(active)
     setActive(!active)
   }
 

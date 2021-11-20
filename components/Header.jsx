@@ -39,11 +39,11 @@ function Header() {
                     <HomeIcon onClick={() => router.push('/')} className="navBtn" />
                     <DarkModeToggle />
                     <Hamburger className="h-6 md:hidden cursor-pointer" />
-                    <SideNav className="md:hidden" session={session}/>
+                    <SideNav className="md:hidden" />
                     {session ? (
                         <>
                             <img 
-                                className="h-10 w-10 rounded-full cursor-pointer"
+                                className="hidden md:block h-10 w-10 rounded-full cursor-pointer"
                                 src={session.user.image}
                                 alt="profile pic"
                                 onClick={signOut}

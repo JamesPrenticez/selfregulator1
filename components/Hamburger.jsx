@@ -1,14 +1,14 @@
 import React from "react"
 import { connect } from "react-redux"
 import { toggleHamburger } from "../redux/actions/hambuger"
+import { useDispatch } from "react-redux" 
 
-class Hamburger extends React.Component{
-  render(){
-  const {hamburger} = this.props
+function Hamburger({hamburger}){
+  const dispatch = useDispatch()
     return (
       <div>
         <button className="text-white md:hidden ml-auto outline-none " 
-          onClick={() => this.props.dispatch(toggleHamburger(!hamburger))}>
+          onClick={() => dispatch(toggleHamburger(!hamburger))}>
           <div className="flex justify-center items-center h-20 w-20 ">
               {/* --------- top ---------*/}
               <span className={`${hamburger ? 'absolute h-1 w-7 bg-custom-secondaryAccent rounded transform transition duration-500 ease-in-out opacity-0' : 'absolute mb-4 h-1 w-7 rounded bg-custom-secondaryAccent transform transition duration-500 ease-in-out'}`}></span>
@@ -21,10 +21,9 @@ class Hamburger extends React.Component{
         </button>
       </div>
     )
-  }
 }
 
-const mapStateToProps = (state) => {
+function mapStateToProps(state){
   return {
     hamburger: state.hamburger
   }

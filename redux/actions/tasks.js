@@ -2,7 +2,7 @@ import { collection, onSnapshot, doc, addDoc, deleteDoc, updateDoc} from '@fireb
 import { db } from "../../firebase"
 
 export const fetchTasks = (uid) => {
-  console.log(uid)
+  //console.log(uid)
   return (dispatch) => {
     onSnapshot(collection(db, "tasks", uid, "task"), (snapshot) => {
         const tasks = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
@@ -14,7 +14,7 @@ export const fetchTasks = (uid) => {
 
 //Action creators can return functions instead of objects thanks to redux thunk
 export const addTask = (task, uid) => {
-  console.log(task, uid)
+  //console.log(task, uid)
   return async (dispatch) => {
     //make async call to db
     await addDoc(collection(db, "tasks", uid, "task"), {

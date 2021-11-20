@@ -13,7 +13,7 @@ function Task({session, item, currentDayIndex, daysThisWeek}) {
     } else {
       item.boxes[index] = !item.boxes[index]
     }
-    console.log(item.boxes) 
+    //console.log(item.boxes) 
     dispatch(updateBoxes(uid, id, item.boxes))
   }
 

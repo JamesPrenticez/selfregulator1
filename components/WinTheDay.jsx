@@ -10,12 +10,12 @@ function WinTheDay({tasks}){
   const {data: session} = useSession();
   const uid = session?.user.uid
   const dispatch = useDispatch()
-  
+
   useEffect(() => {
     if(!uid){
-      console.log("loading")
+      console.log("loading") //Add spinner
     } else {
-      console.log(uid)
+      //console.log(uid)
       dispatch(fetchTasks(uid))
     }
     },[uid]
