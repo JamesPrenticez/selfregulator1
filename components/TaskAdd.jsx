@@ -2,6 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { addTask, fetchTasks } from "../redux/actions/tasks"
 
+
 class TaskAdd extends React.Component{
     state = {
         task: "",

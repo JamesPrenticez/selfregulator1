@@ -1,5 +1,5 @@
-import React from "react"
-import { connect } from "react-redux"
+import React, {useEffect} from "react"
+import { connect, useDispatch } from "react-redux"
 import Task from "./Task";
 import TaskAdd from "./TaskAdd";
 import { fetchTasks } from "../redux/actions/tasks"
@@ -59,15 +59,20 @@ function onlyDaysThisWeek(){
 
 const daysThisWeek = onlyDaysThisWeek()
 
-class WinTheDay extends React.Component{
+function WinTheDay({tasks}){
+  const dispatch = useDispatch()
 
-componentDidMount(){
-  console.log("componentDidMount")
-  this.props.fetchTasks()
-}
+  // const tasks = [{
+  //     task: "Hardcode",
+  //     boxes: [null, null, null, null, null, null, null]
+  // }]   
 
-render(){
-  const { tasks } = this.props
+  useEffect(() => {
+    console.log("useEffect"),
+    dispatch(fetchTasks())
+    },[]
+  )
+  
   
   return (
       <main className="bg-custom-background fade grid grid-cols-2 md:max-w-3xl xl:max-w-6xl mx-auto">
@@ -92,10 +97,10 @@ render(){
               {/* Display Tasks */}
               {tasks.map((item) => (
                 <Task 
-                key={Math.random()}
-                item={item}
-                currentDayIndex={currentDay - 1}
-                daysThisWeek={daysThisWeek}
+                  key={Math.random()}
+                  item={item}
+                  currentDayIndex={currentDay - 1}
+                  daysThisWeek={daysThisWeek}
                 />
                 ))}
 
@@ -106,19 +111,12 @@ render(){
         </section>
       </main>
     )
-  }
 }
 
-const mapStateToProps = (state) => {
+function mapStateToProps(state){
   return {
     tasks: state.tasks
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-      fetchTasks: () => dispatch(fetchTasks())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(WinTheDay)
+export default connect(mapStateToProps)(WinTheDay)
