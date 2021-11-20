@@ -15,7 +15,7 @@ export default function Tasks(state = [], action){
       return state
 
     case "FETCH_TASKS":
-      console.log("Result from FETCH_TASK:", action.tasks)
+      //console.log("Result from FETCH_TASK:", action.tasks)
       return action.tasks
 
     // case SET_TASKS: 
@@ -24,6 +24,10 @@ export default function Tasks(state = [], action){
     case "REMOVE_TASK":
       console.log("Result from DELETE_TASK:", action.task.id)
       return state.filter(task => task.id != action.id)
+    
+    case "REMOVE_TASK_ERROR":
+      //console.log("Result from ADD_TASK_ERROR", action.err)
+      return state
 
     default: 
       return state

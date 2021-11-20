@@ -8,7 +8,7 @@ import {currentDay, days, daysThisWeek, currentWeek, monthName} from "./helpers/
 
 function WinTheDay({tasks}){
   const {data: session} = useSession();
-  const uid = session.user.uid
+  const uid = session?.user.uid
   const dispatch = useDispatch()
   
   useEffect(() => {
@@ -42,10 +42,11 @@ function WinTheDay({tasks}){
             </div>
 
               {/* Display Tasks */}
-              {tasks.map((item) => (
+              {tasks.map((item, index) => (
                 <Task 
-                  key={Math.random()}
+                  key={index}
                   item={item}
+                  session={session}
                   currentDayIndex={currentDay - 1}
                   daysThisWeek={daysThisWeek}
                 />

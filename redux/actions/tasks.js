@@ -29,13 +29,13 @@ export const addTask = (task, uid) => {
   }
 }
 
-export const deleteTask = () => {
+export const deleteTask = (uid, id) => {
   return async (dispatch) => {
-    await deleteDoc(collection(db, "tasks", user, "task", id)
+    await deleteDoc(doc(db, "tasks", uid, "task", id)
   ).then(() => {
     dispatch({ type: "DELETE_TASK", task})
   }).catch((err) => {
-    dispatch({type: "DELE_TASK_ERROR", err})
+    dispatch({type: "DELETE_TASK_ERROR", err})
   })
   }
 }

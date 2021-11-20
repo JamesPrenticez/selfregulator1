@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import { addTask, fetchTasks } from "../redux/actions/tasks"
+import { addTask } from "../redux/actions/tasks"
 
 class TaskAdd extends React.Component{
     state = {
@@ -32,10 +32,8 @@ class TaskAdd extends React.Component{
                 placeholder="Add New Task..."
                 onChange={this.handleChange}
             />
-            {/*blank space to fill in the grid */}
-            <div className="col-span-4" />
             <button 
-                className="border-2 border-custom-primaryAccent px-2 hover:bg-custom-primaryAccent rounded-full col-span-3 md:col-span-4 xl:text-2xl"
+                className="col-start-9 col-span-4 border-2 border-custom-primaryAccent px-2 hover:bg-custom-primaryAccent rounded-full  xl:text-2xl"
                 onClick={this.submit}
                 type="sumbit"
             >
