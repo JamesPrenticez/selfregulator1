@@ -1,10 +1,16 @@
+import { TrashIcon } from "@heroicons/react/outline";
 function Task({item, currentDayIndex, daysThisWeek}) {
   return (
     <div
       key={item.id}
       className="grid grid-cols-12 text-custom-textColor justify-center items-center text-center xl:text-2xl gap-x-1"
     >
-      <p className="col-span-5 !text-left text-xs md:text-base">{item.task}</p>
+      <div className="col-span-5 inline-flex text-xs md:text-base">
+
+      <p className="!text-left">{item.task}</p>
+
+      <TrashIcon className="navBtn mr-2 ml-auto" />
+      </div>
 
       {item.boxes.map((box, index) => (
         <div

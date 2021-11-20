@@ -1,4 +1,5 @@
 import React, {useEffect} from "react"
+import { useSession } from "next-auth/react";
 import { connect, useDispatch } from "react-redux"
 import Task from "./Task";
 import TaskAdd from "./TaskAdd";
@@ -6,11 +7,18 @@ import { fetchTasks } from "../redux/actions/tasks"
 import {currentDay, days, daysThisWeek, currentWeek, monthName} from "./helpers/dates"
 
 function WinTheDay({tasks}){
+  const {data: session} = useSession();
+  const uid = session.user.uid
   const dispatch = useDispatch()
-
+  
   useEffect(() => {
-    dispatch(fetchTasks())
-    },[]
+    if(!uid){
+      console.log("loading")
+    } else {
+      console.log(uid)
+      dispatch(fetchTasks(uid))
+    }
+    },[uid]
   )
   
   return (
@@ -44,7 +52,7 @@ function WinTheDay({tasks}){
                 ))}
 
               {/* Add Task */}
-              <TaskAdd />
+              <TaskAdd session={session}/>
             </div>
           </div>
         </section>

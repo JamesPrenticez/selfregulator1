@@ -2,7 +2,6 @@ import React from "react"
 import { connect } from "react-redux"
 import { addTask, fetchTasks } from "../redux/actions/tasks"
 
-
 class TaskAdd extends React.Component{
     state = {
         task: "",
@@ -17,8 +16,9 @@ class TaskAdd extends React.Component{
 
     submit = (e) => {
         e.preventDefault()
-        this.props.addTask(this.state)
-        this.props.fetchTasks()
+        const {session} = this.props
+        const uid = session.user.uid
+        this.props.addTask(this.state, uid)
         this.setState({task: ""})
     }
 
@@ -48,8 +48,7 @@ class TaskAdd extends React.Component{
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addTask: (task) => dispatch(addTask(task)),
-        fetchTasks: () => dispatch(fetchTasks())
+        addTask: (task, uid) => dispatch(addTask(task, uid)),
     }
 }
 export default connect(null, mapDispatchToProps)(TaskAdd) 
