@@ -1,10 +1,21 @@
 import { connect, useDispatch } from "react-redux"
-import { deleteTask } from "../redux/actions/tasks"
+import { deleteTask, updateBoxes } from "../redux/actions/tasks"
 import { TrashIcon } from "@heroicons/react/outline";
-
+        
 function Task({session, item, currentDayIndex, daysThisWeek}) {
   const uid = session?.user.uid
   const dispatch = useDispatch()
+
+  //handle box in the boxes array
+  const handleBox = (id, index) => {
+    if (item.boxes[index] === null){
+      item.boxes[index] = true
+    } else {
+      item.boxes[index] = !item.boxes[index]
+    }
+    console.log(item.boxes) 
+    dispatch(updateBoxes(uid, id, item.boxes))
+  }
 
   return (
     <div
@@ -18,8 +29,10 @@ function Task({session, item, currentDayIndex, daysThisWeek}) {
       </div>
 
       {item.boxes.map((box, index) => (
+        
         <div
           key={index}
+          onClick={() => handleBox(item.id, index)}
           className={`mt-2 rounded-full border-2 border-custom-senaryAccent h-6 w-6 sm:h-10 sm:w-10 flex justify-center items-center text-center gap-1 hover:border-custom-primaryAccent hover:cursor-pointer
           ${currentDayIndex === index && "text-custom-primaryAccent"}
         `}

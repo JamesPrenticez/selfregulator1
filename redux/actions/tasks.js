@@ -1,4 +1,4 @@
-import { addDoc, collection, onSnapshot, docs, doc, deleteDoc} from '@firebase/firestore';
+import { collection, onSnapshot, doc, addDoc, deleteDoc, updateDoc} from '@firebase/firestore';
 import { db } from "../../firebase"
 
 export const fetchTasks = (uid) => {
@@ -37,5 +37,19 @@ export const deleteTask = (uid, id) => {
   }).catch((err) => {
     dispatch({type: "DELETE_TASK_ERROR", err})
   })
+  }
+}
+
+//Firebase doesnt have the ability to update a single index in an array so we have to update the entire array...
+export const updateBoxes = (uid, id, array) => {
+  return async (dispatch) => {
+    await updateDoc(doc(db, "tasks", uid, "task", id), {
+      boxes: array
+    }
+    ).then(() => {
+      dispatch({ type: "UPDATE_BOX", task})
+    }).catch((err) => {
+      dispatch({type: "UPDATE_TASK_ERROR", err})
+    })
   }
 }

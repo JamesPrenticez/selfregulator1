@@ -6,6 +6,10 @@
 
 export default function Tasks(state = [], action){
   switch(action.type) {
+    case "FETCH_TASKS":
+      //console.log("Result from FETCH_TASK:", action.tasks)
+      return action.tasks
+
     case "ADD_TASK":
       //console.log("Result from ADD_TASK:", action.task)
       return state
@@ -13,13 +17,6 @@ export default function Tasks(state = [], action){
     case "ADD_TASK_ERROR":
       //console.log("Result from ADD_TASK_ERROR", action.err)
       return state
-
-    case "FETCH_TASKS":
-      //console.log("Result from FETCH_TASK:", action.tasks)
-      return action.tasks
-
-    // case SET_TASKS: 
-    //   return action.tasks
     
     case "REMOVE_TASK":
       console.log("Result from DELETE_TASK:", action.task.id)
@@ -28,6 +25,9 @@ export default function Tasks(state = [], action){
     case "REMOVE_TASK_ERROR":
       //console.log("Result from ADD_TASK_ERROR", action.err)
       return state
+
+    case "UPDATE_BOXES": 
+      return state.map(task => task.id == action.id ? {...task, boxes: action.boxes} : task)
 
     default: 
       return state
