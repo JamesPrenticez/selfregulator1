@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Graph from '../components/Graph';
 import Header from '../components/Header'
 //import Tick from '../components/Tick';
 
@@ -11,6 +12,7 @@ const IndexPage = () => {
         </Head>
         <Header />
         {/* <Tick /> */}
+        <Graph />
     </>
 );
 };
