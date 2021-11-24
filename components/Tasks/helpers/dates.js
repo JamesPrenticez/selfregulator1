@@ -40,7 +40,7 @@ function onlyDaysThisWeek(){
   for(let i = 0; i < 7; i++){
       if(i === cd){
           arr[i] = d
-          console.log("here")
+          //console.log("here")
       }
       //find day of week and count foward till we hit 7
       else if(i > cd){

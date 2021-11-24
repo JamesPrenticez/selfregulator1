@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Header from '../components/Header'
-import WinTheDay from '../components/WinTheDay'
+import Tasks from '../components/Tasks/Tasks';
 
 const ToolsPage = () => {
 	return (
@@ -10,7 +10,7 @@ const ToolsPage = () => {
             <link rel="icon" href="/favicon.ico" />
             </Head>
             <Header />
-            <WinTheDay />
+            <Tasks />
         </>
 	);
 };

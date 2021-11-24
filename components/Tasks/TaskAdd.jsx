@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import { addTask } from "../redux/actions/tasks"
+import { addTask } from "../../redux/actions/tasks"
 
 class TaskAdd extends React.Component{
     state = {

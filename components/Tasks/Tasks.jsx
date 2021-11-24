@@ -1,25 +1,71 @@
 import React, {useEffect} from "react"
-import { useSession } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 import { connect, useDispatch } from "react-redux"
 import Task from "./Task";
 import TaskAdd from "./TaskAdd";
-import { fetchTasks } from "../redux/actions/tasks"
+import { fetchTasks } from "../../redux/actions/tasks"
 import {currentDay, days, daysThisWeek, currentWeek, monthName} from "./helpers/dates"
+import {fakeTasks} from './data/fakeTasks'
 
-function WinTheDay({tasks}){
-  const {data: session} = useSession();
-  const uid = session?.user.uid
+function Tasks({tasks}){
+  const { data: session, status } = useSession()
   const dispatch = useDispatch()
+
+  const uid = session?.user.uid
+  let display = null
+
+  console.log(status)
+  console.log(uid)
+
+  if (status === "loading") {
+    return (
+        <>
+        <div className="absolute flex flex-wrap h-screenNav w-full items-center justify-center ">
+          <div className="flex flex-wrap h-36 w-full items-center justify-center ">
+              <img src="/spinner.svg" alt="" />
+          </div>
+        </div>
+        </>
+    )
+  } 
+
+  if (status === "unauthenticated") {
+    return (
+    <div className="absolute flex flex-wrap h-screenNav w-full items-center justify-center ">
+      <div className="flex flex-wrap h-36 w-full items-center justify-center ">
+        <p className="text-red-500 text-3xl w-full text-center">You do not have access to this page! Please sign in.</p>
+        <button 
+          className="w-32 text-custom-secondary p-2 font-bold border border-custom-tertiaryAccent rounded hover:bg-custom-secondaryAccent hover:text-custom-quarterAccent" 
+          onClick={signIn} 
+        >
+          Sign In
+        </button> 
+      </div>
+    </div>
+    )
+  }
 
   useEffect(() => {
     if(!uid){
-      console.log("loading") //Add spinner
+      console.log("loading")
+
     } else {
-      //console.log(uid)
-      dispatch(fetchTasks(uid))
+      console.log(uid)
+      console.log("done loading")
+      //dispatch(fetchTasks(uid))
     }
     },[uid]
   )
+
+  if(status){
+    display = (
+    <>
+    <p className="bg-green-500">Loadings</p>
+    <img src="/spinner.svg" alt="" />
+    </>
+    )
+  }
+
   
   return (
       <main className="bg-custom-background fade grid grid-cols-2 md:max-w-3xl xl:max-w-6xl mx-auto">
@@ -40,6 +86,8 @@ function WinTheDay({tasks}){
                 )
             })}
             </div>
+
+              {display}
 
               {/* Display Tasks */}
               {tasks.map((item, index) => (
@@ -67,4 +115,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps)(WinTheDay)
+export default connect(mapStateToProps)(Tasks)

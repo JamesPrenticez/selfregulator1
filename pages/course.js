@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Course from '../components/Course';
+import Course from '../components/Course/Course';
 import Header from '../components/Header'
 
 const CoursePage = () => {

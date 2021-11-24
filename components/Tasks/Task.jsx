@@ -1,5 +1,5 @@
 import { connect, useDispatch } from "react-redux"
-import { deleteTask, updateBoxes } from "../redux/actions/tasks"
+import { deleteTask, updateBoxes } from "../../redux/actions/tasks"
 import { TrashIcon } from "@heroicons/react/outline";
         
 function Task({session, item, currentDayIndex, daysThisWeek}) {
