@@ -1,4 +1,4 @@
-const tasks = [
+export const fakeTasks = [
   {
     task: "Meditate for 10mins",
     boxes: [

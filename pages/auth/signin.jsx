@@ -12,8 +12,8 @@ function signIn({ providers }) {
   const router = useRouter();
   return (
     <>
-      <div className="p-10 h-screen flex flex-wrap justify-center items-center bg-custom-background">
-        <div className="w-3/6 xl:w-1/5 border border-custom-tertiaryAccent rounded">
+      <div className="p-10 h-screen flex flex-wrap justify-center items-center bg-custom-background ">
+        <div className="w-[400px] border border-custom-tertiaryAccent rounded">
           <div className="flex flex-wrap justify-center h-1/4 w-full">
             <div className="p-4">
                 {/*Logo*/}
