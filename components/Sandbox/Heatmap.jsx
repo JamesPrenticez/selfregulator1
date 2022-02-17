@@ -4,24 +4,27 @@ import { json } from "d3";
 import React from "react";
 import moment from 'moment'
 
-const dayNames = {
-  0: "Mon",
-  1: " ",
-  2: "Wed",
-  3: " ",
-  4: "Fri",
-  5: " ",
-  6: "Sun",
-};
-
 function Cell({index, startDate}) {
   let date = moment(startDate).add(index, 'day')
   return (
-    <div className="h-4 w-4 text-xs border rounded-sm cursor-pointer hover:border-green-600">{date.format('DD/MM/YYYY')}</div>
+    <>
+    <div className="tooltip h-4 w-4 text-xs border rounded-sm cursor-pointer hover:border-green-600">
+      <span className="tooltiptext">{date.format('DD/MM/YYYY')}</span>
+    </div>
+    </>
   );
 }
 
 function WeekDay({ index }) {
+  const dayNames = {
+    0: "Mon",
+    1: " ",
+    2: "Wed",
+    3: " ",
+    4: "Fri",
+    5: " ",
+    6: "Sun",
+  };
   return <div className="h-4 text-xs mr-5">{dayNames[index]}</div>;
 }
 
@@ -40,7 +43,7 @@ export default function Heatmap() {
   return (
     <>
       <div className="flex justify-center mt-20">
-        <h1>Win The Day</h1>
+        <h1 className="font-kanit">Win The Day</h1>
       </div>
       <div className="flex justify-center mt-2">
         {months.map((_, index) => (

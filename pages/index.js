@@ -17,6 +17,8 @@ const IndexPage = () => {
         {/* <Dates /> */}
         {/* <Graph /> */}
         <Heatmap />
+        <h1 className='font-sharpGrotesk'>sharpGrotesk</h1>
+        <h1 className='font-kanit'>kanit</h1>
     </>
 );
 };

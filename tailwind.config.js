@@ -46,6 +46,7 @@ module.exports = {
         3: "3px"
       },
       fontFamily: {
+        sharpGrotesk: ['Sharp Grotesk'],
         kanit: ['Kanit'],
       },
       gridTemplateColumns: {

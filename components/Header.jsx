@@ -11,12 +11,12 @@ function Header() {
     const router = useRouter();
 
     return (
-        <div className="shadow-sm border-b border-custom-tertiaryAccent bg-custom-primary sticky top-0 h-20 z-50 fade">
+        <div className="shadow-sm border-b border-custom-tertiaryAccent bg-custom-primary sticky top-0 py-4 z-50 fade">
             <div className="grid grid-cols-2 md:max-w-3xl lg:grid-cols-3 xl:max-w-6xl mx-auto">
                 {/* Left */}
                 <div className="col-span-1 lg:col-span-2">
-                    <div onClick={() => router.push('/')} className="relative w-176 hidden lg:inline-grid cursor-pointer ">
-                        <h1 className="h-16 mt-1 font-kanit font-extrabold text-5xl text-custom-secondaryAccent">SelfRegulator</h1>
+                    <div onClick={() => router.push('/')} className="relative w-176 hidden lg:inline-grid cursor-pointer">
+                        <h1 className="font-kanit font-extrabold text-5xl text-custom-secondaryAccent">SelfRegulator</h1>
                     </div>
                     <div onClick={() => router.push('/')} className="relative w-20 h-20 lg:hidden flex-shrink-0 cursor-pointer flex items-center">
                         {/*Logo*/}
