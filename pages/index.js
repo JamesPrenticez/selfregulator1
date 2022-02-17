@@ -1,6 +1,7 @@
 import Head from 'next/head'
-import Dates from '../components/Sandbox/Dates';
-import Graph from '../components/Sandbox/Graph';
+// import Dates from '../components/Sandbox/Dates';
+//import Graph from '../components/Sandbox/Graph';
+import Heatmap from '../components/Sandbox/Heatmap';
 import Header from '../components/Header'
 //import Tick from '../components/Tick';
 
@@ -13,8 +14,9 @@ const IndexPage = () => {
         </Head>
         <Header />
         {/* <Tick /> */}
-        <Dates />
-        <Graph />
+        {/* <Dates /> */}
+        {/* <Graph /> */}
+        <Heatmap />
     </>
 );
 };
