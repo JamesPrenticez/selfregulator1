@@ -34,9 +34,6 @@ function Header() {
 
                 {/* Right*/}
                 <div className="col-span-1 inline-flex items-center justify-end md:space-x-4">
-                    <TrendingUpIcon onClick={() => router.push('/tools')} className="navBtn" />
-                    <PlayIcon onClick={() => router.push('/course')} className="navBtn" />
-                    <HomeIcon onClick={() => router.push('/')} className="navBtn" />
                     <DarkModeToggle />
                     <Hamburger className="h-6 md:hidden cursor-pointer" />
                     <SideNav className="md:hidden" />

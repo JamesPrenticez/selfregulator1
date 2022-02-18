@@ -24,7 +24,7 @@ class TaskAdd extends React.Component{
 
     render(){
         return(
-            <form className="grid grid-cols-12 mt-4">
+            <form className="grid grid-cols-12 mt-4 h-20 items-center">
             <input
                 name='task'
                 value={this.state.task}
@@ -33,7 +33,7 @@ class TaskAdd extends React.Component{
                 onChange={this.handleChange}
             />
             <button 
-                className="col-start-9 col-span-4 border-2 border-custom-primaryAccent px-2 hover:bg-custom-primaryAccent rounded-full text-xs md:text-base"
+                className=" h-1/2 col-start-11 col-span-2 border-2 border-custom-primaryAccent px-2 hover:bg-custom-primaryAccent rounded-full text-xs md:text-base"
                 onClick={this.submit}
                 type="sumbit"
             >

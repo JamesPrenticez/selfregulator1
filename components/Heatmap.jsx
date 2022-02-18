@@ -70,11 +70,8 @@ export default function Heatmap() {
 
 
   return (
-    <>
-      <div className="flex justify-center mt-20">
-        <h1 className="font-kanit">Win The Day</h1>
-      </div>
-      <div className="flex justify-center mt-2">
+    <div className="ml-[775px] sm:ml-0">
+      <div className="flex justify-center mt-2 ">
         <div className="grid grid-rows-1 grid-flow-col gap-1 mt-2 ml-8">
           {months.map((_, index) => (
             <Month key={index} index={index} />
@@ -107,6 +104,6 @@ export default function Heatmap() {
       <div className="flex justify-center mt-10">
         <p className="italic text-xs">Currently Randomly Generated Data</p>
       </div>
-    </>
+    </div>
   );
 }
