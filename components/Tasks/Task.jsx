@@ -25,7 +25,7 @@ function Task({session, item, currentDayIndex, daysThisWeek}) {
       <div className="col-span-5 inline-flex text-xs md:text-base items-center">
         <p className="!text-left">{item.task}
         </p>
-        <TrashIcon  className="navBtn mr-2 ml-auto h-12 w-12" onClick={() => dispatch(deleteTask(uid, item.id))} />
+        <TrashIcon  className="navBtn mr-2 ml-auto" onClick={() => dispatch(deleteTask(uid, item.id))} />
         {/* Add some sort of hover/show here */}
       </div>
 

@@ -67,7 +67,6 @@ html {
     .navBtn{
         @apply
             text-custom-secondary 
-            hidden 
             md:inline-flex
             h-6
             cursor-pointer
