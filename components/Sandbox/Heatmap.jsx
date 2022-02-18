@@ -1,6 +1,5 @@
 //https://www.youtube.com/watch?v=xmfcI2mjy4s&t=3685s 36.23
 //https://jsitor.com/zdrqOxaWK
-import { json } from "d3";
 import React from "react";
 import moment from 'moment'
 
@@ -14,12 +13,30 @@ const dayNames = {
   6: "Sun",
 }
 
-function Cell({index, startDate}) {
-  let date = moment(startDate).add(index, 'day')
+const data = Array.from(new Array(365)).map((_, index) => {
+  let startDate = moment().add(-364, 'days')
+  return {
+    date: moment(startDate).add(index, 'day'),
+    value: Math.floor(Math.random() * 100), //needs to be a pecentage 1/4 or 4/4
+    task: 'Mediate' //needs to me a array
+  };
+});
+
+function Cell({ dataPoint, alpha }) {
+  let style = {
+    backgroundColor: `${dataPoint.value === 0 ? /*'rgb(255, 0, 0, 6)'*/'' : "rgb(0,255,0," + alpha + ")" }`
+  }
+  console.log(color)
   return (
     <>
-    <div className="tooltip h-4 w-4 text-xs border rounded-sm cursor-pointer hover:border-green-600">
-      <span className="tooltiptext">{date.format('DD/MM/YYYY')}</span>
+    <div className="tooltip h-4 w-4 text-xs border rounded-sm cursor-pointer hover:border-green-600" style={style}>
+      <span className="tooltiptext text-left">
+          <p>Date: {dataPoint.date.format('DD/MM/YYYY')}</p>
+          <br />
+          <p>Task: {dataPoint.task}</p> 
+          <br />
+          <p>Value: {dataPoint.value}</p> 
+      </span>
     </div>
     </>
   );
@@ -37,15 +54,22 @@ function Month({index, startDate}) {
   )
 }
 
+
+
+
 export default function Heatmap() {
   let startDate = moment().add(-364, 'days')
   let dateRange = [startDate, moment()]
-  let days = Math.abs(dateRange[0].diff(dateRange[1], 'days'));
+  let days = Math.abs(dateRange[0].diff(dateRange[1], 'days'))
   let cells = Array.from(new Array(365)); //days
   let weeks = Array.from(new Array(7));
-  let months = Array.from(new Array(Math.floor(days / 7)));
-  let currentMonth = moment().format('MMM')
-  console.log(currentMonth)
+  let months = Array.from(new Array(Math.floor(days / 7)))
+
+  let min = Math.min(0, ...data.map(d => d.value))
+  let max = Math.max(...data.map(d => d.value))
+  let colorMultiplier = 1 / (max - min)
+
+
   return (
     <>
       <div className="flex justify-center mt-20">
@@ -65,10 +89,24 @@ export default function Heatmap() {
             <WeekDay key={index} index={index} />
           ))}
 
-          {cells.map((_, index) => (
-            <Cell key={index} index={index} startDate={startDate} />
-          ))}
+          {cells.map((_, index) => {
+            let date = moment(startDate).add(index, 'day')
+            let dataPoint = data.find(d => moment(date).format('DDMMYYYY') === moment(d.date).format('DDMMYYYY'))
+            let alpha = colorMultiplier * dataPoint.value;
+            
+            return (
+              <Cell 
+                key={index}
+                index={index}
+                dataPoint={dataPoint}
+                alpha={alpha} //color rgb(0,255,0, alpha)
+              />
+            )
+          })}
         </div>
+      </div>
+      <div className="flex justify-center mt-10">
+        <p className="italic text-xs">Currently Randomly Generated Data</p>
       </div>
     </>
   );
