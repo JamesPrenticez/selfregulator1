@@ -41,6 +41,28 @@ html {
     --tertiaryAccent: var(var(--color-tertiary-accent));
 }
 
+/* Heatmap */
+/* https://stackoverflow.com/questions/2717480/css-selector-for-first-element-with-class */
+/* https://www.w3.org/TR/selectors/#general-sibling-combinators */
+.Jan~.Jan,
+.Feb~.Feb,
+.Mar~.Mar,
+.Apr~.Apr,
+.May~.May,
+.Jun~.Jun,
+.Jul~.Jul,
+.Aug~.Aug,
+.Sep~.Sep,
+.Oct~.Oct,
+.Nov~.Nov,
+.Dec~.Dec{
+    visibility: hidden;
+}
+
+.month:nth-of-type(51){
+    visibility: visible !important;
+}
+
 @layer components {
     .navBtn{
         @apply
