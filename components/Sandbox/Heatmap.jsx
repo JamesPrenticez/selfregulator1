@@ -26,7 +26,6 @@ function Cell({ dataPoint, alpha }) {
   let style = {
     backgroundColor: `${dataPoint.value === 0 ? /*'rgb(255, 0, 0, 6)'*/'' : "rgb(0,255,0," + alpha + ")" }`
   }
-  console.log(color)
   return (
     <>
     <div className="tooltip h-4 w-4 text-xs border rounded-sm cursor-pointer hover:border-green-600" style={style}>
