@@ -1,6 +1,6 @@
 import React from "react"
 import { signIn, signOut, useSession } from "next-auth/react";
-import { toggleHamburger } from "../redux/actions/hambuger"
+import { toggleHamburger } from "../redux/hamburger/action"
 import { useRouter } from "next/router";
 import { connect } from "react-redux"
 import { useDispatch } from "react-redux" 

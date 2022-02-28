@@ -1,5 +1,3 @@
-import { TrendingUpIcon } from "@heroicons/react/outline"
-import { HomeIcon, PlayIcon } from "@heroicons/react/solid";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import DarkModeToggle from "./DarkMode"
@@ -11,11 +9,11 @@ function Header() {
     const router = useRouter();
 
     return (
-        <div className="shadow-sm border-b border-custom-tertiaryAccent bg-custom-primary sticky top-0 py-4 z-50 fade">
-            <div className="grid grid-cols-2 md:max-w-3xl lg:grid-cols-3 xl:max-w-6xl mx-auto">
+        <div className="shadow-sm border-b border-custom-tertiaryAccent bg-custom-primary sticky top-0 z-50 fade h-20 ">
+            <div className="flex items-center justify-between mx-auto max-w-7xl">
                 {/* Left */}
-                <div className="col-span-1 lg:col-span-2">
-                    <div onClick={() => router.push('/')} className="relative w-176 hidden lg:inline-grid cursor-pointer">
+                <div className="">
+                    <div onClick={() => router.push('/')} className="relative w-176 h-20 hidden lg:inline-grid cursor-pointer flex items-center">
                         <h1 className="font-kanit font-extrabold text-5xl text-custom-secondaryAccent">SelfRegulator</h1>
                     </div>
                     <div onClick={() => router.push('/')} className="relative w-20 h-20 lg:hidden flex-shrink-0 cursor-pointer flex items-center">
@@ -33,7 +31,7 @@ function Header() {
                 </div>
 
                 {/* Right*/}
-                <div className="col-span-1 inline-flex items-center justify-end md:space-x-4">
+                <div className="inline-flex items-center justify-end md:space-x-4">
                     <DarkModeToggle />
                     <Hamburger className="h-6 md:hidden cursor-pointer" />
                     <SideNav className="md:hidden" />
