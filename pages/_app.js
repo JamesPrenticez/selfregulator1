@@ -1,13 +1,16 @@
 import '../styles/global.css'
 import { SessionProvider } from "next-auth/react"
-import { wrapper } from "../redux/store"
+import { Provider } from 'react-redux';
+import { store } from '../redux/store'
 
-function MyApp({ Component, pageProps: { session, ...pageProps} }) {
+function App({ Component, pageProps: { session, ...pageProps} }) {
   return (
-  <SessionProvider session={session}>
-        <Component {...pageProps} />
-  </SessionProvider>
+  <Provider store={store}>
+    <SessionProvider session={session}>
+      <Component {...pageProps} />
+    </SessionProvider>
+  </Provider>
   )
 }
 
-export default wrapper.withRedux(MyApp)
+export default App;

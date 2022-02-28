@@ -2,10 +2,12 @@ import React from "react"
 import { connect } from "react-redux"
 import { addTask } from "../../redux/actions/tasks"
 
-class TaskAdd extends React.Component{
+class HabitAdd extends React.Component{
     state = {
-        task: "",
-        boxes: [null, null, null, null, null, null, null]
+        title: "",
+        checkmarks: [
+
+        ]
     }   
 
     handleChange = (e) => {
@@ -49,4 +51,4 @@ const mapDispatchToProps = (dispatch) => {
         addTask: (task, uid) => dispatch(addTask(task, uid)),
     }
 }
-export default connect(null, mapDispatchToProps)(TaskAdd) 
+export default connect(null, mapDispatchToProps)(HabitAdd) 

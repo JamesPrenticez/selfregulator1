@@ -1,5 +1,5 @@
 import { connect, useDispatch } from "react-redux"
-import { deleteTask, updateBoxes } from "../../redux/actions/tasks"
+//import { deleteTask, updateBoxes } from "../../redux/actions/tasks"
 import { TrashIcon } from "@heroicons/react/outline";
         
 function Task({session, item, currentDayIndex, daysThisWeek}) {
@@ -7,15 +7,15 @@ function Task({session, item, currentDayIndex, daysThisWeek}) {
   const dispatch = useDispatch()
 
   //handle box in the boxes array
-  const handleBox = (id, index) => {
-    if (item.boxes[index] === null){
-      item.boxes[index] = true
-    } else {
-      item.boxes[index] = !item.boxes[index]
-    }
-    //console.log(item.boxes) 
-    dispatch(updateBoxes(uid, id, item.boxes))
-  }
+  // const handleBox = (id, index) => {
+  //   if (item.boxes[index] === null){
+  //     item.boxes[index] = true
+  //   } else {
+  //     item.boxes[index] = !item.boxes[index]
+  //   }
+  //   //console.log(item.boxes) 
+  //   dispatch(updateBoxes(uid, id, item.boxes))
+  // }
 
   return (
     <div
@@ -25,7 +25,7 @@ function Task({session, item, currentDayIndex, daysThisWeek}) {
       <div className="col-span-5 inline-flex text-xs md:text-base items-center">
         <p className="!text-left">{item.task}
         </p>
-        <TrashIcon  className="navBtn mr-2 ml-auto" onClick={() => dispatch(deleteTask(uid, item.id))} />
+        {/* <TrashIcon  className="navBtn mr-2 ml-auto" onClick={() => dispatch(deleteTask(uid, item.id))} /> */}
         {/* Add some sort of hover/show here */}
       </div>
 
