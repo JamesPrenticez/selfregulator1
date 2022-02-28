@@ -1,11 +1,5 @@
-import React, { useEffect } from "react";
-import {
-  currentDay,
-  days,
-  daysThisWeek,
-  currentWeek,
-  monthName,
-} from "./helpers/dates";
+import React from "react";
+import HabitAdd from "./HabitAdd"
 
 function Habit({habit}){
   return(
@@ -22,6 +16,7 @@ export default function Habits({habits}) {
       {habits.map((habit) => (
         <Habit key={habit.id} habit={habit}/>
       ))}
+      <HabitAdd />
     </main>
   )
 }

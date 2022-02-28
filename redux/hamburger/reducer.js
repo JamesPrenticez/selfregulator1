@@ -1,4 +1,4 @@
-import {TOGGLE_HAMBURGER} from '../actions/hamburger'
+import {TOGGLE_HAMBURGER} from './action'
 
 export default function(state = false, action){
   switch(action.type) {

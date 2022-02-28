@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import { toggleHamburger } from "../redux/actions/hamburger"
+import { toggleHamburger } from "../redux/hamburger/action"
 import { useDispatch } from "react-redux" 
 
 function Hamburger({hamburger}){

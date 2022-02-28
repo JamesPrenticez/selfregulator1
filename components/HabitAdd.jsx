@@ -1,37 +1,40 @@
 import React from "react"
-import { connect } from "react-redux"
-import { addTask } from "../../redux/actions/tasks"
+import { connect } from "react-redux";
+import { setHabits } from "../redux/habits/action"
 
 class HabitAdd extends React.Component{
     state = {
         title: "",
-        checkmarks: [
-
-        ]
+        description: "",
+        color: "",
     }   
 
     handleChange = (e) => {
         this.setState({
-            task: e.target.value
+            title: e.target.value
         })
     }
 
     submit = (e) => {
         e.preventDefault()
-        const {session} = this.props
-        const uid = session.user.uid
-        this.props.addTask(this.state, uid)
-        this.setState({task: ""})
+        fetch("/api/habits", { 
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(this.state)
+        }).then(() => {
+            this.props.dispatch(setHabits())
+        })
+        this.setState({title: "", description: "", color: ""})
     }
 
     render(){
         return(
             <form className="grid grid-cols-12 mt-4 h-20 items-center">
             <input
-                name='task'
-                value={this.state.task}
+                name='title'
+                value={this.state.title}
                 className="bg-transparent mr-2 col-span-5 md:col-span-4 focus:outline-none text-xs md:text-base"
-                placeholder="Add New Task..."
+                placeholder="Add New Habit..."
                 onChange={this.handleChange}
             />
             <button 
@@ -39,16 +42,11 @@ class HabitAdd extends React.Component{
                 onClick={this.submit}
                 type="sumbit"
             >
-                Create Task
+                Create Habit
             </button>
         </form>
         )
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addTask: (task, uid) => dispatch(addTask(task, uid)),
-    }
-}
-export default connect(null, mapDispatchToProps)(HabitAdd) 
+export default connect()(HabitAdd) 

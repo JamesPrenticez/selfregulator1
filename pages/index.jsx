@@ -2,12 +2,22 @@ import Head from "next/head";
 import Header from "../components/Header";
 import Habits from "../components/Habits";
 import Spinner from "../components/Spinner"
-import { useGetHabitsQuery } from "../redux/query/habits";
+import { useState, useEffect } from "react";
+import { setHabits } from "../redux/habits/action"
+import { connect, useDispatch } from "react-redux";
 
-const IndexPage = () => {
-  const { data: habits, isFetching } = useGetHabitsQuery()
-  // console.log(habits)
- // const [cryptos, setCryptos] = useState(cryptosList?.data.coins)
+const IndexPage = ({habits}) => {
+ const dispatch = useDispatch();
+ const [isLoading, setLoading] = useState(true)
+
+ useEffect(() => {
+   //Fake loading time just for fun =P
+    setTimeout(() => {
+      setLoading(true)
+      dispatch(setHabits())
+      setLoading(false)
+    }, 1000)
+  }, [])
 
   return (
     <>
@@ -18,15 +28,20 @@ const IndexPage = () => {
       <Header />
 
       <div className="p-10">
-        {isFetching ?
+        {isLoading ?
           <Spinner />
           : 
           <Habits habits={habits}/>
         }
       </div>
-
     </>
   );
 };
 
-export default IndexPage;
+function mapStateToProps(state) {
+  return {
+    habits: state.habits,
+  };
+}
+
+export default connect(mapStateToProps)(IndexPage);
