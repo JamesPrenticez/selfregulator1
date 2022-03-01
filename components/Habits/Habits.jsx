@@ -1,5 +1,21 @@
-import React from "react";
+import React from "react"
+import { useDispatch } from "react-redux"
+import { TrashIcon } from "@heroicons/react/outline";
+import { deleteHabitById } from "../../redux/habits/actions";
+
 function Habit({habit}){
+  const checkmarks = JSON.parse(habit.checkmarks)
+  const dispatch = useDispatch()
+
+  const updateCheckmark = (index) => {
+    // cycle through: true, false, null 
+    checkmarks[index].value === null ? checkmarks[index].value = true
+    : checkmarks[index].value === true ? checkmarks[index].value = false
+    : checkmarks[index].value = null
+    console.log(checkmarks[index].value )
+    //dispatch(updateCheckmarks(habit.id, checkmarks)
+  }
+  
   return(
     <div className="flex items-center p-4 bg-neutral-700 space-x-4">
       <div className="h-16 w-16 rounded-full bg-neutral-900"></div>
@@ -9,11 +25,17 @@ function Habit({habit}){
           <h1 className="text-3xl" style={{color: habit.color}}>{habit.title}</h1>
           <h2 className="text-xl text-neutral-400">{habit.description}</h2>
         </div>
+        
+
 
         <div className="flex space-x-4">
-          {JSON.parse(habit.checkmarks).map((checkmark) => {
+          {checkmarks.map((checkmark, index) => {
             return (
-              <div className="inline-flex h-16 w-16 bg-neutral-900 items-center justify-center cursor-pointer">
+              <div 
+                key={index}
+                className="inline-flex h-16 w-16 bg-neutral-900 items-center justify-center cursor-pointer"
+                onClick={() => updateCheckmark(index)}
+              >
                 {checkmark.value === true ? 
                   <svg 
                     className="text-green-600"
@@ -50,6 +72,9 @@ function Habit({habit}){
               </div> 
             )
           })}
+
+          <TrashIcon className="navBtn my-auto w-16" onClick={() => dispatch(deleteHabitById(habit.id))} />
+
         </div>
       </div>
     </div>

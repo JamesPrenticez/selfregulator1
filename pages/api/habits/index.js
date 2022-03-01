@@ -28,12 +28,7 @@ export default async function habits(req, res){
           title: title,
           description: description,
           color: color,
-          checkmarks: `[
-            {
-              date: ${Date.now()}
-              checkmark: ${true}
-            }
-          ]`,
+          checkmarks: '[{"date":"28-02-2022","value":null}, {"date":"01-03-2022","value":null}, {"date":"02-03-2022","value":null}, {"date":"03-03-2022","value":null}, {"date":"04-03-2022","value":null}, {"date":"04-03-2022","value":null}, {"date":"05-03-2022","value":null}]',
           User: { connect: { id: userId } },
         }
       })

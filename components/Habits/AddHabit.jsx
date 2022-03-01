@@ -1,8 +1,11 @@
 import React, {useState} from "react"
+import { useDispatch } from "react-redux";
 import { connect } from "react-redux";
 import { setHabits } from "../../redux/habits/actions"
 
 function AddHabit(){
+    const dispatch = useDispatch()
+
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [color, setColor] = useState("")
@@ -14,20 +17,26 @@ function AddHabit(){
     // }
 
     const submit = (e) => {
-        const data = {
-            title: title,
-            description: description,
-            color: color,
-        }
-        e.preventDefault()
-        fetch("/api/habits", { 
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-        }).then(() => {
-            this.props.dispatch(setHabits())
-        })
-        this.setState({title: "", description: "", color: ""})
+      const data = {
+        title: title,
+        description: description,
+        color: color,
+      }
+
+      console.log(data)
+      
+      e.preventDefault()
+
+      fetch("/api/habits", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      }).then(() => {
+        dispatch(setHabits())
+      })
+      setTitle("")
+      setDescription("")
+      setColor("")
     }
 
     return(
@@ -43,7 +52,7 @@ function AddHabit(){
             </div>
             <button 
                 className="h-16 w-64 hover:bg-neutral-400 text-xs md:text-base bg-neutral-900"
-                onClick={() => submit()}
+                onClick={(e) => submit(e)}
                 type="sumbit"
             >
                 Create Habit
