@@ -6,7 +6,7 @@ export const setHabits = () => {
     }).then((res) => {
       return res.json()
     }).then((data) => {
-      console.log(data)
+      //console.log(data)
       //send to the reducer
       dispatch({ type: "SET_HABITS", habits: data})
     }).catch((err) => {

@@ -7,13 +7,13 @@ function AddHabit(){
     const [description, setDescription] = useState("")
     const [color, setColor] = useState("")
 
-    handleChange = (e) => {
-        setTitle(e.target.value)
-        setDescription(e.target.value)
-        setColor(e.target.value)
-    }
+    // handleChange = (e) => {
+    //     setTitle(e.target.value)
+    //     setDescription(e.target.value)
+    //     setColor(e.target.value)
+    // }
 
-    submit = (e) => {
+    const submit = (e) => {
         const data = {
             title: title,
             description: description,
@@ -31,7 +31,7 @@ function AddHabit(){
     }
 
     return(
-        <form className="flex justify-between items-center h-20 bg-neutral-700">
+        <form className="flex justify-between items-center bg-neutral-700 p-4">
             <div>
             <input
                 name='title'
@@ -42,15 +42,11 @@ function AddHabit(){
             />
             </div>
             <button 
-                className="h-full w-64 hover:bg-neutral-400 text-xs md:text-base bg-neutral-600 p-4"
-                onClick={this.submit}
+                className="h-16 w-64 hover:bg-neutral-400 text-xs md:text-base bg-neutral-900"
+                onClick={() => submit()}
                 type="sumbit"
             >
                 Create Habit
-            </button>
-
-            <button>
-
             </button>
         </form>
     )
