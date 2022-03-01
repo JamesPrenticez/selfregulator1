@@ -20,8 +20,11 @@ function Task({session, item, currentDayIndex, daysThisWeek}) {
   return (
     <div
       key={item.id}
-      className="grid grid-cols-12 text-custom-textColor xl:text-2xl gap-x-1"
+      className="grid grid-cols-12 text-custom-textColor xl:text-2xl gap-x-1 "
     >
+
+
+
       <div className="col-span-5 inline-flex text-xs md:text-base items-center">
         <p className="!text-left">{item.task}
         </p>

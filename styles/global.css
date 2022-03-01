@@ -5,13 +5,13 @@
 /*primary, secondary, tertiary, quaternary, quinary, senary, septenary, octonary, nonary, and denary*/
 :root {
     --color-primary-accent: #3482F6;
-    --color-secondary-accent: #000;
+    --color-secondary-accent: #171717;
     --color-tertiary-accent: #E5E7EB;
     --color-quarter-accent: #00FF00;
     --color-quinary-accent: #00FF00;
     --color-senary-accent: #E5E7EB;
     --color-primary: #fff; 
-    --color-secondary: #000; 
+    --color-secondary: #171717; 
     --color-tertiary: #D1D6DB; 
 }
 
@@ -19,10 +19,10 @@
     --color-primary-accent: #FF00FF;
     --color-secondary-accent: #00FF00;
     --color-tertiary-accent: #00FF00;
-    --color-quarter-accent: #000;
+    --color-quarter-accent: #171717;
     --color-quinary-accent: #fff;
     --color-senary-accent: #FFFF00;
-    --color-primary: #000;
+    --color-primary: #171717; /* neutral-900 */
     --color-secondary: #fff;
     --color-tertiary: #D1D6DB; 
 }

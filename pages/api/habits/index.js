@@ -2,21 +2,22 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
 export default async function habits(req, res){
-  const userId = '2'
+  const userId = '1'
   const {title, description, color} = req.body
   if(req.method === 'GET'){
-      const result = await prisma.habit.findMany({
-          where: {
-            userId: userId,
-          },
-          select: {
-            id: true,
-            title: true,
-            description: true,
-            checkmarks: true,
-            //createdAt: true,
-          }
-        })
+    const result = await prisma.habit.findMany({
+        where: {
+          userId: userId,
+        },
+        select: {
+          id: true,
+          title: true,
+          description: true,
+          color: true,
+          checkmarks: true,
+          //createdAt: true,
+        }
+      })
       //console.log(result) 
       return res.status(200).json(result)
     }
@@ -36,7 +37,7 @@ export default async function habits(req, res){
           User: { connect: { id: userId } },
         }
       })
-    //console.log(result)   
-    return res.status(200).json(result)
-  }
+      //console.log(result)   
+      return res.status(200).json(result)
+    }
 }

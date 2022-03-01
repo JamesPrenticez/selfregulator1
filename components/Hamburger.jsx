@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import { toggleHamburger } from "../redux/hamburger/action"
+import { toggleHamburger } from "../redux/hamburger/actions"
 import { useDispatch } from "react-redux" 
 
 function Hamburger({hamburger}){
@@ -22,7 +22,7 @@ function Hamburger({hamburger}){
 
 function mapStateToProps(state){
   return {
-    hamburger: state.hamburger
+    hamburger: state.hamburger,
   }
 }
 

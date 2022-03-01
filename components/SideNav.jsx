@@ -1,9 +1,10 @@
 import React from "react"
 import { signIn, signOut, useSession } from "next-auth/react";
-import { toggleHamburger } from "../redux/hamburger/action"
+import { toggleHamburger } from "../redux/hamburger/actions"
 import { useRouter } from "next/router";
 import { connect } from "react-redux"
 import { useDispatch } from "react-redux" 
+import { toggleShowAddHabit } from "../redux/showAddHabit/actions";
 
 const navigation = [
   { name: 'HOME', href: '/'},
@@ -11,12 +12,10 @@ const navigation = [
 
 const navigationSignedIn = [
   { name: 'HOME', href: '/'},
-  { name: 'HABIT TRACKER', href: '/tools'},
-  { name: 'COURSE', href: '/course'},
   { name: 'ACCOUNT', href: '/account'},
 ]
 
-function SideNav({hamburger}){
+function SideNav({hamburger, showAddHabit}){
   const dispatch = useDispatch()
   const router = useRouter();
   const {data: session} = useSession();
@@ -26,6 +25,12 @@ function SideNav({hamburger}){
   if(!session){
     content = (
       <div>
+        <button 
+          onClick={() => {dispatch(toggleShowAddHabit(!showAddHabit)), dispatch(toggleHamburger(!hamburger))}}
+          className="block w-full !text-left cursor-pointer p-4 text-xl font-bold text-black hover:text-white hover:bg-black box-border border-b border-black"
+        >
+          ADD NEW HABIT
+        </button>
         {navigation.map((item, index) => (
           <a
           key={index}
@@ -38,6 +43,7 @@ function SideNav({hamburger}){
             </div>
           </a>
         ))}
+
         <button 
           onClick={signIn}
           className="block w-full !text-left cursor-pointer p-4 text-xl font-bold text-black hover:text-white hover:bg-black box-border border-b border-black"
@@ -61,6 +67,12 @@ function SideNav({hamburger}){
         <p className="w-full text-center font-kanit text-black border-b border-black py-4">
           {session.user.name}
         </p>
+        <button 
+          onClick={() => {dispatch(toggleShowAddHabit(!showAddHabit)), dispatch(toggleHamburger(!hamburger))}}
+          className="block w-full !text-left cursor-pointer p-4 text-xl font-bold text-black hover:text-white hover:bg-black box-border border-b border-black"
+        >
+          ADD NEW HABIT
+        </button>
         {navigationSignedIn.map((item, index) => (
           <a
           key={index}
@@ -94,7 +106,8 @@ function SideNav({hamburger}){
 
 function mapStateToProps(state){
   return {
-    hamburger: state.hamburger
+    hamburger: state.hamburger,
+    showAddHabit: state.showAddHabit
   }
 }
 

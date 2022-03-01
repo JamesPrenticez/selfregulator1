@@ -32,6 +32,6 @@
     "autoprefixer": "^10.4.0",
     "postcss": "^8.3.11",
     "sqlite3": "^5.0.2",
-    "tailwindcss": "^2.2.19"
+    "tailwindcss": "latest"
   }
 }
