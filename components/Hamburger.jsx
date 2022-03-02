@@ -44,42 +44,42 @@ function Hamburger({showAddHabit}){
                     : 'transform transition duration-700 ease-in-out -translate-y-60'}
         `}
         > 
-          <button 
+          <div 
             onClick={() => {dispatch(toggleShowAddHabit(!showAddHabit))}}
             className="inline-flex justify-between w-full !text-left cursor-pointer p-4 text-xl font-bold text-green-600 hover:bg-green-600 hover:text-black box-border border-b border-green-600"
           >
             ADD NEW HABIT
             <PlusIcon className="h-7" />
-          </button>
+          </div>
           
           {false ? //session
           <>
             <Link href={`/user/${session?.user.email}`} passHref>
-              <button 
+              <div 
               className="inline-flex justify-between w-full !text-left cursor-pointer p-4 text-xl font-bold text-green-600 hover:bg-green-600 hover:text-black box-border border-b border-green-600"
               >
                 ACCOUNT
                 <UserIcon className="h-7" />
-              </button>
+              </div>
             </Link>
 
-            <button 
+            <div 
               onClick={signOut}
               className="inline-flex justify-between w-full !text-left cursor-pointer p-4 text-xl font-bold text-green-600 hover:bg-green-600 hover:text-black box-border border-b border-green-600"
             >
               SIGN OUT
               <LogoutIcon className="h-7" />
-            </button>
+            </div>
           </> 
           : // !session
           <>
-            <button 
+            <div 
               onClick={signIn}
               className="inline-flex justify-between w-full !text-left cursor-pointer p-4 text-xl font-bold text-green-600 hover:bg-green-600 hover:text-black box-border border-b border-green-600"
             >
               SIGN IN
               <LoginIcon className="h-7" />
-            </button>
+            </div>
           </>
           }
         </div>

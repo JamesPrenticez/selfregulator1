@@ -2,15 +2,15 @@ import React from "react"
 import { useDispatch } from "react-redux"
 import { TrashIcon } from "@heroicons/react/outline";
 import { deleteHabitById } from "../../redux/habits/actions";
-import { createArrayOfDatesForCurrentWeek } from "../../utils/checkmarks";
+import { createArrayOfDatesForCurrentWeek, currentWeek } from "../../utils/checkmarks";
 
 function HabitHeadings(){
   const arrayOfDatesForCurrentWeek = createArrayOfDatesForCurrentWeek()
-
+  
   return(
     <div className="flex items-center p-4 bg-green-600 space-x-4">
       <div className="w-full flex justify-between items-center">
-          <h1 className="text-4xl font-bold text-black">Habits for Week: {new Date().getWeek()}</h1>
+          <h1 className="text-4xl font-bold text-black">Habits for Week: {currentWeek}</h1>
 
         <div className="flex space-x-4">
           {arrayOfDatesForCurrentWeek.map((item, index) => (
