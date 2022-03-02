@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux"
 function Hamburger({hamburger}){
   const dispatch = useDispatch()
     return (
-        <button className="text-white md:hidden ml-auto outline-none h-20 w-20 flex justify-center items-center" 
+        <button className="text-white outline-none h-20 w-20 flex justify-center items-center fixed top-0 z-50" 
           onClick={() => dispatch(toggleHamburger(!hamburger))}
         >
           {/* --------- top ---------*/}

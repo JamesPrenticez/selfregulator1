@@ -1,6 +1,6 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
-import { createArrayOfDatesForCurrentWeek } from '../../../utils/checkmarks'
+import { createCheckmarksForCurrentWeek } from '../../../utils/checkmarks'
 
 // api/habits
 export default async function habits(req, res){
@@ -30,7 +30,7 @@ export default async function habits(req, res){
           title: title,
           description: description,
           color: color,
-          checkmarks: JSON.stringify(createArrayOfDatesForCurrentWeek()),
+          checkmarks: JSON.stringify(createCheckmarksForCurrentWeek()),
           User: { connect: { id: userId } },
         }
       })

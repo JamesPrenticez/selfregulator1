@@ -7,11 +7,10 @@ import { useDispatch } from "react-redux"
 import { toggleShowAddHabit } from "../redux/showAddHabit/actions";
 
 const navigation = [
-  { name: 'HOME', href: '/'},
+
 ]
 
 const navigationSignedIn = [
-  { name: 'HOME', href: '/'},
   { name: 'ACCOUNT', href: '/account'},
 ]
 
@@ -96,9 +95,10 @@ function SideNav({hamburger, showAddHabit}){
   }
 
   return (
-    <div className={`md:hidden bg-gray-200 w-full h-screenNav fixed top-20 -right-full ${hamburger ? 'transform transition duration-700 ease-in-out -translate-x-full' : 'transform transition duration-700 ease-in-out translate-x-full'}`}> 
+    //<div className={`bg-gray-200 w-[20vw] h-screenNav fixed top-20 -right-[20vw] ${hamburger ? 'transform transition duration-700 ease-in-out -translate-x-full' : 'transform transition duration-700 ease-in-out translate-x-full'}`}> 
+    <div className={`bg-gray-200 w-60 h-60 fixed -top-40 z-10 ${hamburger ? 'transform transition duration-700 ease-in-out translate-y-60' : 'transform transition duration-700 ease-in-out -translate-y-60'}`}> 
       <div>  
-      {hamburger ? content : "" }
+        {content}
       </div>
     </div>
   )

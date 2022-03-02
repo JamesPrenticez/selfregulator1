@@ -2,6 +2,38 @@ import React from "react"
 import { useDispatch } from "react-redux"
 import { TrashIcon } from "@heroicons/react/outline";
 import { deleteHabitById } from "../../redux/habits/actions";
+import { createArrayOfDatesForCurrentWeek } from "../../utils/checkmarks";
+
+
+
+function HabitHeadings(){
+  const arrayOfDatesForCurrentWeek = createArrayOfDatesForCurrentWeek()
+  console.log(arrayOfDatesForCurrentWeek)
+  return(
+    <div className="flex items-center p-4 bg-green-600 space-x-4">
+      <div className="w-full flex justify-between items-center">
+          <h1 className="text-4xl font-bold text-black">Habits for Week: {new Date().getWeek()}</h1>
+
+        <div className="flex space-x-4">
+          {arrayOfDatesForCurrentWeek.map((item, index) => (
+            <div 
+            key={index}
+            className="h-16 w-16 bg-neutral-900 flex items-center justify-center cursor-pointer "
+            >
+              <div className="text-center">
+                <h2 className="text-sm font-bold text-gray-400">{item.day.toUpperCase()}</h2>
+                <h1 className="text-md">{item.date}</h1>
+              </div>
+            </div>
+          ))}
+          <div className="h-16 w-16 mx-auto my-auto"></div>
+        </div>
+
+      </div>
+    </div>
+  )
+}
+
 
 function Habit({habit}){
   const checkmarks = JSON.parse(habit.checkmarks)
@@ -82,6 +114,7 @@ function Habit({habit}){
 export default function Habits({habits}) {
   return (
     <>
+      <HabitHeadings/>
       {habits.map((habit) => (
         <Habit key={habit.id} habit={habit}/>
       ))}

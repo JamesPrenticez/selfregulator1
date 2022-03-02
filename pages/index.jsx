@@ -28,6 +28,7 @@ const IndexPage = ({habits, showAddHabit}) => {
         <title>Self Regulator</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      
       <Header />
 
       <main className="grid gap-1 max-w-7xl mx-auto mt-4">
