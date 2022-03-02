@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import Header from "../components/Header";
 import Habits from "../components/Habits/Habits";
 import AddHabit from "../components/Habits/AddHabit";
 import Spinner from "../components/Spinner"
@@ -8,6 +7,7 @@ import Spinner from "../components/Spinner"
 import { connect, useDispatch } from "react-redux";
 import { setHabits } from "../redux/habits/actions"
 import { toggleShowAddHabit } from "../redux/showAddHabit/actions"
+import Hamburger from "../components/Hamburger";
 
 const IndexPage = ({habits, showAddHabit}) => {
  const dispatch = useDispatch();
@@ -29,9 +29,12 @@ const IndexPage = ({habits, showAddHabit}) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
-      <Header />
+      <div className="sticky top-0 h-20 max-w-7xl mx-auto">
+        <Hamburger showAddHabit={showAddHabit} />
+        {/* <DarkModeToggle /> */}
+      </div>
 
-      <main className="grid gap-1 max-w-7xl mx-auto mt-4">
+      <main className="grid gap-1 max-w-7xl mx-auto">
         {isLoading ?
           <Spinner />
           : 

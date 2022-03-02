@@ -4,11 +4,9 @@ import { TrashIcon } from "@heroicons/react/outline";
 import { deleteHabitById } from "../../redux/habits/actions";
 import { createArrayOfDatesForCurrentWeek } from "../../utils/checkmarks";
 
-
-
 function HabitHeadings(){
   const arrayOfDatesForCurrentWeek = createArrayOfDatesForCurrentWeek()
-  console.log(arrayOfDatesForCurrentWeek)
+
   return(
     <div className="flex items-center p-4 bg-green-600 space-x-4">
       <div className="w-full flex justify-between items-center">
@@ -26,6 +24,7 @@ function HabitHeadings(){
               </div>
             </div>
           ))}
+          {/* Placeholder */}
           <div className="h-16 w-16 mx-auto my-auto"></div>
         </div>
 
