@@ -1,9 +1,11 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
+import { createArrayOfDatesForCurrentWeek } from '../../../utils/checkmarks'
 
+// api/habits
 export default async function habits(req, res){
   const userId = '1'
-  const {title, description, color} = req.body
+  const {habitId, title, description, color, checkmarks} = req.body
   if(req.method === 'GET'){
     const result = await prisma.habit.findMany({
         where: {
@@ -28,11 +30,30 @@ export default async function habits(req, res){
           title: title,
           description: description,
           color: color,
-          checkmarks: '[{"date":"28-02-2022","value":null}, {"date":"01-03-2022","value":null}, {"date":"02-03-2022","value":null}, {"date":"03-03-2022","value":null}, {"date":"04-03-2022","value":null}, {"date":"04-03-2022","value":null}, {"date":"05-03-2022","value":null}]',
+          checkmarks: JSON.stringify(createArrayOfDatesForCurrentWeek()),
           User: { connect: { id: userId } },
         }
       })
       //console.log(result)   
       return res.status(200).json(result)
     }
+
+    // else if(req.method === 'PATCH'){
+    //   const result = await prisma.habit.update({
+    //     where: {
+    //       userId: userId,
+    //       id: habitId
+    //     },
+    //     data: {
+    //       title: title,
+    //       description: description,
+    //       color: color,
+    //       checkmarks: JSON.stringify(createArrayOfDatesForCurrentWeek()),
+    //     }
+    //   })
+    //   //console.log(result)   
+    //   return res.status(200).json(result)
+    // }
+
+    
 }

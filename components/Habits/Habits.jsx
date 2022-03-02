@@ -26,8 +26,6 @@ function Habit({habit}){
           <h2 className="text-xl text-neutral-400">{habit.description}</h2>
         </div>
         
-
-
         <div className="flex space-x-4">
           {checkmarks.map((checkmark, index) => {
             return (

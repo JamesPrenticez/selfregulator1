@@ -1,7 +1,7 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
-// DELETE /api/habit/:id
+// DELETE /api/habits/:id
 export default async function deleteHabitById(req, res) {
   const habitId = req.query.id;
   if (req.method === 'DELETE') {
