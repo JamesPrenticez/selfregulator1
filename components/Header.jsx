@@ -1,12 +1,18 @@
 import { signIn, signOut, useSession } from "next-auth/react";
+import { connect } from "react-redux"
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux" 
 import DarkModeToggle from "./DarkMode"
 import Hamburger from "./Hamburger";
 import SideNav from "./SideNav"
+import { PlusIcon } from "@heroicons/react/solid"
+import { toggleShowAddHabit } from "../redux/showAddHabit/actions";
 
-function Header() {
+
+function Header({showAddHabit}) {
     const {data: session} = useSession();
     const router = useRouter();
+    const dispatch = useDispatch()
 
     return (
         <div className="shadow-sm border-b border-custom-tertiaryAccent bg-custom-primary sticky top-0 z-50 fade h-20 ">
@@ -33,12 +39,16 @@ function Header() {
                 {/* Right*/}
                 <div className="inline-flex items-center justify-end md:space-x-4">
                     <DarkModeToggle />
+                    <PlusIcon
+                        className="h-7 md:h-6 text-custom-secondary md:inline-flex cursor-pointer transform transition-all hover:scale-125 duration-150 ease-out" 
+                        onClick={() => dispatch(toggleShowAddHabit(!showAddHabit))}
+                    />
                     <Hamburger className="h-6 md:hidden cursor-pointer" />
                     <SideNav className="md:hidden" />
                     {session ? (
                         <>
                             <img 
-                                className="hidden md:block h-10 w-10 rounded-full cursor-pointer"
+                                className="hidden md:block h-10 w-10 rounded-full cursor-pointer object-cover"
                                 src={session.user.image}
                                 alt="profile pic"
                                 onClick={signOut}
@@ -61,4 +71,11 @@ function Header() {
     )
 }
 
-export default Header
+function mapStateToProps(state){
+    return {
+      showAddHabit: state.showAddHabit
+    }
+  }
+  
+  
+  export default connect(mapStateToProps)(Header)

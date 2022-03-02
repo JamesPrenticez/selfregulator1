@@ -1,12 +1,15 @@
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Header from "../components/Header";
-import Habits from "../components/Habits";
+import Habits from "../components/Habits/Habits";
+import AddHabit from "../components/Habits/AddHabit";
 import Spinner from "../components/Spinner"
-import { useState, useEffect } from "react";
-import { setHabits } from "../redux/habits/action"
-import { connect, useDispatch } from "react-redux";
 
-const IndexPage = ({habits}) => {
+import { connect, useDispatch } from "react-redux";
+import { setHabits } from "../redux/habits/actions"
+import { toggleShowAddHabit } from "../redux/showAddHabit/actions"
+
+const IndexPage = ({habits, showAddHabit}) => {
  const dispatch = useDispatch();
  const [isLoading, setLoading] = useState(true)
 
@@ -16,7 +19,7 @@ const IndexPage = ({habits}) => {
       setLoading(true)
       dispatch(setHabits())
       setLoading(false)
-    }, 1000)
+    }, 0)
   }, [])
 
   return (
@@ -27,13 +30,19 @@ const IndexPage = ({habits}) => {
       </Head>
       <Header />
 
-      <div className="p-10">
+      <main className="grid gap-1 max-w-7xl mx-auto mt-4">
         {isLoading ?
           <Spinner />
           : 
           <Habits habits={habits}/>
         }
-      </div>
+
+        {showAddHabit ? 
+          <AddHabit />
+        :
+          ""
+        }
+      </main>
     </>
   );
 };
@@ -41,6 +50,7 @@ const IndexPage = ({habits}) => {
 function mapStateToProps(state) {
   return {
     habits: state.habits,
+    showAddHabit: state.showAddHabit
   };
 }
 
