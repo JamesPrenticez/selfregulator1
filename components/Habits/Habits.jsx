@@ -1,7 +1,7 @@
 import React from "react"
 import { useDispatch } from "react-redux"
 import { TrashIcon } from "@heroicons/react/outline";
-import { deleteHabitById, updateHabitById } from "../../redux/habits/actions";
+import { deleteHabitById, updateCheckmarksById } from "../../redux/habits/actions";
 import { createArrayOfDatesForCurrentWeek, currentWeek } from "../../utils/checkmarks";
 
 function HabitHeadings(){
@@ -45,9 +45,11 @@ function Habit({habit}){
     // : checkmarks[index].value = null
 
     //let checkmarkForSingleDay = checkmarks[index]
-    let checkmarkForSingleDay = { date: "01 01 2022", value: null }
+    let habitId = habit.id
+    let newCheckmarkForSingleDay = { date: checkmarks[index].date, value: (checkmarks[index].value = true) }
+    let indexInWeek = index
 
-    dispatch(updateHabitById(habit.id, checkmarkForSingleDay))
+    dispatch(updateCheckmarksById(habitId, newCheckmarkForSingleDay, indexInWeek))
   }
   
   return(

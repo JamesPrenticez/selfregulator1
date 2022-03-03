@@ -35,7 +35,7 @@ export const deleteHabitById = (habitId) => {
 }
 
 
-export const updateHabitById = (habitId) => {
+export const updateHabitTitle = (habitId) => {
   return async (dispatch) => {
     await fetch(`/api/habits/${habitId}`, {
       method: "PATCH",
@@ -43,10 +43,33 @@ export const updateHabitById = (habitId) => {
       return res.json();
     })
     .then((data) => {
-        dispatch({ type: "UPDATE_HABIT", habit: data })
+        dispatch({ type: "UPDATE_HABIT_TITLE", habit: data })
       })
       .catch((err) => {
-        dispatch({ type: "UPDATE_HABIT_ERROR", err })
+        dispatch({ type: "UPDATE_HABIT_TITLE_ERROR", err })
+      })
+  }
+}
+
+export const updateCheckmarksById = (habitId, newCheckmarkForSingleDay, indexInWeek) => {
+  let data = {
+    habitId: habitId,
+    newCheckmarkForSingleDay: newCheckmarkForSingleDay,
+    indexInWeek: indexInWeek
+  }
+  return async (dispatch) => {
+    await fetch(`/api/habits/checkmarks/${habitId}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    }).then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+        dispatch({ type: "UPDATE_HABIT_CHECKMARKS", habit: data })
+      })
+      .catch((err) => {
+        dispatch({ type: "UPDATE_HABIT_CHECKMARKS_ERROR", err })
       })
   }
 }

@@ -23,6 +23,8 @@ const {data: session} = useSession();
     }, 0)
   }, [])
 
+  console.log(habits)
+
   return (
     <>
       <Head>

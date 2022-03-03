@@ -1,3 +1,6 @@
+
+
+
 export default function habits(state = [], action){
   switch(action.type) {
     case "SET_HABITS":
@@ -25,9 +28,21 @@ export default function habits(state = [], action){
       //console.log("Result from DELETE_HABIT_ERROR", action.err)
       return state
 
-    case "UPDATE_HABIT": 
-    //console.log("Result from UPDATE_HABIT:", action.habit,title)
+    case "UPDATE_HABIT_TITLE": 
+      //console.log("Result from UPDATE_HABIT:", action.habit,title)
       return state.map(x => x.id == action.habit.id ? {...x, title: action.habit.title} : x)
+
+    case "UPDATE_HABIT_TITLE_ERROR": 
+    //console.log("Result from UPDATE_HABIT_ERROR:", action.err)
+    return state
+
+    case "UPDATE_HABIT_CHECKMARKS": 
+      //console.log("Result from UPDATE_HABIT:", action.habit,title)
+      return state.map(x => x.id == action.habit.id ? {...x, checkmarks: action.habit.checkmarks} : x)
+
+    case "UPDATE_HABIT_CHECKMARKS_ERROR": 
+    //console.log("Result from UPDATE_HABIT_ERROR:", action.err)
+    return state
 
     default: 
       return state

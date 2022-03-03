@@ -6,6 +6,13 @@ let moment = require('moment') //ES5 ..
 //import fs from 'fs'
 //import {data} from './data.js';
 
+//Get Current Week - returns number - you dont need to import or export it jsut works with Date.getWeek() anywhere in the app
+Date.prototype.getWeek = function() {
+  var dt = new Date(this.getFullYear(),0,1); //Get first day of the year
+  return Math.ceil((((this - dt) / 86400000) + dt.getDay()+1)/7);
+}
+
+
 //This is a bit overkill
 function createArrayOfDatesForCurrentWeek(){
   const currentDayIndex = new Date().getDay() - 1 //zero index
@@ -37,6 +44,16 @@ const createCheckmarksForCurrentYear = Array.from(new Array(365)).map((_, index)
 // let json = JSON.stringify(createCheckmarksForCurrentYear);
 // fs.writeFileSync('utils/data.js', json);
 
+function getIndexCurrentWeek(data){
+  const startOfWeek = moment().startOf('isoweek').format('DD MM YYYY') //iso makes the first day Monday not Sunday =)
+  let obj = data.find(x => x.date === startOfWeek)
+  let index = data.indexOf(obj)
+  return index
+}
+
+//const currentDate = new Date()
+//export const startOfCurrentWeek = currentDate.getWeek()
+
 const currentWeek = moment(moment().toDate(), "DD MM YYYY").week()
 
 function getArrayForCurrentWeek(data){
@@ -49,6 +66,7 @@ function getArrayForCurrentWeek(data){
 
 //ES5 Syntax
 module.exports = {
+  getIndexCurrentWeek,
   createArrayOfDatesForCurrentWeek,
   createCheckmarksForCurrentYear,
   getArrayForCurrentWeek,
