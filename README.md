@@ -14,3 +14,7 @@ https://github.com/lumenwrites/helix
 - ``` npx prisma migrate reset ``` - Do this to reset the entire DB
 - ``` node prisma/seeds/clean.js``` 
 - ``` npx prisma db seed ``` 
+
+    checkmarks[index].value === null ? checkmarks[index].value = true
+    : checkmarks[index].value === true ? checkmarks[index].value = false
+    : checkmarks[index].value = null

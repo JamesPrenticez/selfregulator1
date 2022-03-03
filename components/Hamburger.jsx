@@ -9,8 +9,8 @@ function Hamburger({showAddHabit, session}){
   const [hamburger, setHamburger] = useState(false)
   const dropDownMenu = useRef(null);
   const dispatch = useDispatch();
-
-  console.log(session)
+  //console.log(session)
+  
   return (
       <div
         className="z-50 fixed top-0 text-white outline-none " 

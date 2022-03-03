@@ -5,7 +5,7 @@ import { createCheckmarksForCurrentYear, getArrayForCurrentWeek } from '../../..
 // api/habits
 export default async function habits(req, res){
   const userId = '1'
-  const {habitId, title, description, color, checkmarks} = req.body
+  const {habitId, title, description, color, checkmarks, checkmarkForSingleDay} = req.body
   if(req.method === 'GET'){
     const result = await prisma.habit.findMany({
         where: {
@@ -43,22 +43,10 @@ export default async function habits(req, res){
       return res.status(200).json(result)
     }
 
-    // else if(req.method === 'PATCH'){
-    //   const result = await prisma.habit.update({
-    //     where: {
-    //       userId: userId,
-    //       id: habitId
-    //     },
-    //     data: {
-    //       title: title,
-    //       description: description,
-    //       color: color,
-    //       checkmarks: JSON.stringify(createArrayOfDatesForCurrentWeek()),
-    //     }
-    //   })
-    //   //console.log(result)   
-    //   return res.status(200).json(result)
-    // }
+    else {
+      throw new Error(
+        `The HTTP ${req.method} method is not supported at this route.`,
+      );
+    }
 
-    
 }

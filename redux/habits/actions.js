@@ -33,3 +33,20 @@ export const deleteHabitById = (habitId) => {
       })
   }
 }
+
+
+export const updateHabitById = (habitId) => {
+  return async (dispatch) => {
+    await fetch(`/api/habits/${habitId}`, {
+      method: "PATCH",
+    }).then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+        dispatch({ type: "UPDATE_HABIT", habit: data })
+      })
+      .catch((err) => {
+        dispatch({ type: "UPDATE_HABIT_ERROR", err })
+      })
+  }
+}
