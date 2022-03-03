@@ -5,12 +5,13 @@ import Link from "next/link";
 import { toggleShowAddHabit } from "../redux/showAddHabit/actions"
 import { useDispatch } from "react-redux";
 
-function Hamburger({showAddHabit}){
+function Hamburger({showAddHabit, session}){
   const [hamburger, setHamburger] = useState(false)
   const dropDownMenu = useRef(null);
   const dispatch = useDispatch();
 
-    return (
+  console.log(session)
+  return (
       <div
         className="z-50 fixed top-0 text-white outline-none " 
         ref={dropDownMenu}
@@ -18,6 +19,7 @@ function Hamburger({showAddHabit}){
         onClick={() => dropDownMenu.current.focus()}
         onBlur={() => setHamburger(false)}
       >
+
         {/* Hamburger */}
         <div 
           className="h-20 w-20 fixed top-0 z-50 flex items-center justify-center cursor-pointer"
@@ -52,7 +54,7 @@ function Hamburger({showAddHabit}){
             <PlusIcon className="h-7" />
           </div>
           
-          {false ? //session
+          {session ?
           <>
             <Link href={`/user/${session?.user.email}`} passHref>
               <div 

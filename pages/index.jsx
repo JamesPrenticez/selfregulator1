@@ -3,13 +3,13 @@ import Head from "next/head";
 import Habits from "../components/Habits/Habits";
 import AddHabit from "../components/Habits/AddHabit";
 import Spinner from "../components/Spinner"
-
+import { useSession } from 'next-auth/react'
 import { connect, useDispatch } from "react-redux";
 import { setHabits } from "../redux/habits/actions"
-import { toggleShowAddHabit } from "../redux/showAddHabit/actions"
 import Hamburger from "../components/Hamburger";
 
 const IndexPage = ({habits, showAddHabit}) => {
+const {data: session} = useSession();
  const dispatch = useDispatch();
  const [isLoading, setLoading] = useState(true)
 
@@ -30,8 +30,12 @@ const IndexPage = ({habits, showAddHabit}) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
+
       <div className="sticky top-0 h-20 max-w-7xl mx-auto">
-        <Hamburger showAddHabit={showAddHabit} />
+      < div className="flex w-full h-full items-center">
+         <h1 className="ml-auto text-right mr-5 text-custom-secondaryAccent">{session ? session.user.name : ''}</h1>
+        </div>
+        <Hamburger showAddHabit={showAddHabit} session={session} />
         {/* <DarkModeToggle /> */}
       </div>
 
