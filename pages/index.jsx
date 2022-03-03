@@ -19,6 +19,7 @@ const IndexPage = ({habits, showAddHabit}) => {
       setLoading(true)
       dispatch(setHabits())
       setLoading(false)
+      
     }, 0)
   }, [])
 

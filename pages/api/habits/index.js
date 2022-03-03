@@ -1,6 +1,6 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
-import { createCheckmarksForCurrentYear } from '../../../utils/checkmarks'
+import { createCheckmarksForCurrentYear, getArrayForCurrentWeek } from '../../../utils/checkmarks'
 
 // api/habits
 export default async function habits(req, res){
@@ -19,9 +19,14 @@ export default async function habits(req, res){
           checkmarks: true,
           //createdAt: true,
         }
+      }).then((result) => {
+        result.map(x => {
+          x.checkmarks = JSON.stringify(getArrayForCurrentWeek(JSON.parse(x.checkmarks)))
+          return {...x}
+        })
+        //console.log(result) 
+        return res.status(200).json(result)
       })
-      //console.log(result) 
-      return res.status(200).json(result)
     }
 
     else if(req.method === 'POST'){
