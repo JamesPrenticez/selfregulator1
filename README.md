@@ -18,3 +18,9 @@ https://github.com/lumenwrites/helix
     checkmarks[index].value === null ? checkmarks[index].value = true
     : checkmarks[index].value === true ? checkmarks[index].value = false
     : checkmarks[index].value = null
+
+
+
+ESLINT:    https://nextjs.org/docs/basic-features/eslint
+
+I need to expand next auth to include a userId or change all the apis unique identifiers to work from email.

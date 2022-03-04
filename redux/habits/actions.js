@@ -26,7 +26,7 @@ export const deleteHabitById = (habitId) => {
       return res.json();
     })
     .then((data) => {
-        dispatch({ type: "DELETE_HABIT", habits: data })
+        dispatch({ type: "DELETE_HABIT", habit: data })
       })
       .catch((err) => {
         dispatch({ type: "DELETE_HABIT_ERROR", err })

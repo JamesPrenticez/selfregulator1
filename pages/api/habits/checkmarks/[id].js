@@ -5,14 +5,12 @@ import {getIndexCurrentWeek} from '../../../../utils/checkmarks'
 
 // UPDATE /api/habits/checkmarks/:id
 export default async function updateCheckmarksById(req, res) {
-  //const habitId = req.query.id
-  //console.log(habitId)
   let {habitId, newCheckmarkForSingleDay, indexInWeek} = req.body
-  //console.log(habitId, checkmarks)
-  
+  let updatedData = []
+  let firstDayOfWeekIndexInYear = ''
   if(req.method === 'PATCH'){
     
-    const result = await prisma.habit.findMany({
+    await prisma.habit.findMany({
       where: {
         id: habitId,
       },
@@ -21,28 +19,26 @@ export default async function updateCheckmarksById(req, res) {
       }
     }).then((fetchedHabit) => {
       let checkmarks = JSON.parse(fetchedHabit[0].checkmarks)
-      let firstDayOfWeekIndexInYear = getIndexCurrentWeek(checkmarks)
+      firstDayOfWeekIndexInYear = getIndexCurrentWeek(checkmarks)
       checkmarks.splice((firstDayOfWeekIndexInYear + indexInWeek), 1, newCheckmarkForSingleDay)
-      
-      //console.log(checkmarks)
-      let slice = checkmarks.slice(firstDayOfWeekIndexInYear, (firstDayOfWeekIndexInYear + 7)) // just to reduce console output 
-      console.log(slice)
-
-      // let updatedData = result.map(x => {x.checkmarks = JSON.stringify(getArrayForCurrentWeek(JSON.parse(x.checkmarks)))
-      //   return {...x}
-      // })
+      updatedData = JSON.stringify(checkmarks)
     })
-
-    // const result = await prisma.habit.update({
-    //   where: {
-    //     id: String(habitId),
-    //   },
-    //   data: {
-    //     checkmarks: updatedData,
-    //   }
-    // })
-    // //console.log(result)   
-    // return res.json(result)
+    //console.log(updatedData)
+    const result = await prisma.habit.update({
+      where: {
+        id: String(habitId),
+      },
+      data: {
+        checkmarks: updatedData,
+      }
+    }).then((res) => {
+      //console.log(JSON.parse(res.checkmarks))
+      let slice = JSON.parse(res.checkmarks).slice(firstDayOfWeekIndexInYear, (firstDayOfWeekIndexInYear + 7))
+      //console.log(slice) 
+      return {...res, checkmarks: JSON.stringify(slice)}
+    })
+    //console.log(result)
+    return res.status(200).json(result)
   }
   
   else {

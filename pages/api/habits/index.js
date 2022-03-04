@@ -1,11 +1,17 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
+import { getSession } from 'next-auth/react';
+
+import { useSession } from 'next-auth/react';
 import { createCheckmarksForCurrentYear, getArrayForCurrentWeek } from '../../../utils/checkmarks'
 
 // api/habits
 export default async function habits(req, res){
-  const userId = '1'
-  const {habitId, title, description, color, checkmarks, checkmarkForSingleDay} = req.body
+  const session = await getSession({ req });
+  const userId = session?.user?.id || "1"
+  console.log(session?.user)
+
+  const {title, description, color} = req.body
   if(req.method === 'GET'){
     const result = await prisma.habit.findMany({
         where: {

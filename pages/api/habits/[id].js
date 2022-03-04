@@ -26,19 +26,6 @@ export default async function deleteHabitById(req, res) {
     //console.log(result)   
     return res.json(result)
   }
-
-  if(req.method === 'PATCH'){
-    const result = await prisma.habit.update({
-      where: {
-        id: String(habitId),
-      },
-      data: {
-        title: 'snoop',
-      }
-    })
-    //console.log(result)   
-    return res.json(result)
-  }
   
   else {
     throw new Error(

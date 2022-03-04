@@ -40,13 +40,13 @@ function Habit({habit}){
 
   const updateCheckmark = (index) => {
     // cycle through: true, false, null 
-    // checkmarks[index].value === null ? checkmarks[index].value = true
-    // : checkmarks[index].value === true ? checkmarks[index].value = false
-    // : checkmarks[index].value = null
+    let newValue = checkmarks[index].value === null ? true
+                  : checkmarks[index].value === true ? false
+                  : checkmarks[index].value = null
 
     //let checkmarkForSingleDay = checkmarks[index]
     let habitId = habit.id
-    let newCheckmarkForSingleDay = { date: checkmarks[index].date, value: (checkmarks[index].value = true) }
+    let newCheckmarkForSingleDay = { date: checkmarks[index].date, value: (checkmarks[index].value = newValue) }
     let indexInWeek = index
 
     dispatch(updateCheckmarksById(habitId, newCheckmarkForSingleDay, indexInWeek))
