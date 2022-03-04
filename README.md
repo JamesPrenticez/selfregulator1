@@ -14,3 +14,13 @@ https://github.com/lumenwrites/helix
 - ``` npx prisma migrate reset ``` - Do this to reset the entire DB
 - ``` node prisma/seeds/clean.js``` 
 - ``` npx prisma db seed ``` 
+
+    checkmarks[index].value === null ? checkmarks[index].value = true
+    : checkmarks[index].value === true ? checkmarks[index].value = false
+    : checkmarks[index].value = null
+
+
+
+ESLINT:    https://nextjs.org/docs/basic-features/eslint
+
+I need to expand next auth to include a userId or change all the apis unique identifiers to work from email.

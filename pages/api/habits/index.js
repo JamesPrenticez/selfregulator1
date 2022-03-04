@@ -1,11 +1,17 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
-import { createArrayOfDatesForCurrentWeek } from '../../../utils/checkmarks'
+import { getSession } from 'next-auth/react';
+
+import { useSession } from 'next-auth/react';
+import { createCheckmarksForCurrentYear, getArrayForCurrentWeek } from '../../../utils/checkmarks'
 
 // api/habits
 export default async function habits(req, res){
-  const userId = '1'
-  const {habitId, title, description, color, checkmarks} = req.body
+  const session = await getSession({ req });
+  const userId = session?.user?.id || "1"
+  console.log(session?.user)
+
+  const {title, description, color} = req.body
   if(req.method === 'GET'){
     const result = await prisma.habit.findMany({
         where: {
@@ -19,9 +25,14 @@ export default async function habits(req, res){
           checkmarks: true,
           //createdAt: true,
         }
+      }).then((result) => {
+        result.map(x => {
+          x.checkmarks = JSON.stringify(getArrayForCurrentWeek(JSON.parse(x.checkmarks)))
+          return {...x}
+        })
+        //console.log(result) 
+        return res.status(200).json(result)
       })
-      //console.log(result) 
-      return res.status(200).json(result)
     }
 
     else if(req.method === 'POST'){
@@ -30,7 +41,7 @@ export default async function habits(req, res){
           title: title,
           description: description,
           color: color,
-          checkmarks: JSON.stringify(createArrayOfDatesForCurrentWeek()),
+          checkmarks: JSON.stringify(createCheckmarksForCurrentYear),
           User: { connect: { id: userId } },
         }
       })
@@ -38,22 +49,10 @@ export default async function habits(req, res){
       return res.status(200).json(result)
     }
 
-    // else if(req.method === 'PATCH'){
-    //   const result = await prisma.habit.update({
-    //     where: {
-    //       userId: userId,
-    //       id: habitId
-    //     },
-    //     data: {
-    //       title: title,
-    //       description: description,
-    //       color: color,
-    //       checkmarks: JSON.stringify(createArrayOfDatesForCurrentWeek()),
-    //     }
-    //   })
-    //   //console.log(result)   
-    //   return res.status(200).json(result)
-    // }
+    else {
+      throw new Error(
+        `The HTTP ${req.method} method is not supported at this route.`,
+      );
+    }
 
-    
 }

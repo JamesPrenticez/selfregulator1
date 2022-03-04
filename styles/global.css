@@ -74,7 +74,8 @@ html {
             transition-all
             hover:scale-125
             duration-150
-            ease-out;
+            ease-out
+            z-10;
     }
 }
 
